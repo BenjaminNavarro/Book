@@ -148,6 +148,88 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#io" id="io">IO</a></h1>
+<p>Module description...</p>
+<h2><a class="header" href="#functions" id="functions">Functions</a></h2>
+<ul>
+<li><a href="#print">print</a></li>
+<li><a href="#println">println</a></li>
+<li><a href="#fprint">fprint</a></li>
+<li><a href="#fprintln">fprintln</a></li>
+<li><a href="#cprint">cprint</a></li>
+<li><a href="#cprintln">cprintln</a></li>
+<li><a href="#cdprint">cdprint</a></li>
+<li><a href="#cdprintln">cdprintln</a></li>
+<li><a href="#scan">scan</a></li>
+<li><a href="#scaneof">scaneof</a></li>
+<li><a href="#fflush">fflush</a></li>
+</ul>
+<h2><a class="header" href="#variables" id="variables">Variables</a></h2>
+<ul>
+<li><a href="#stdout">stdout</a></li>
+<li><a href="#stderr">stderr</a></li>
+</ul>
+<h3><a class="header" href="#print" id="print">print</a></h3>
+<pre><code>print(args...) -&gt; void
+</code></pre>
+<p>Print all given <code>args</code> to the standard output without adding a new line after the last one</p>
+<p>Example:</p>
+<pre><code>let name = 'John';
+let age = '21';
+io.print('My name is ', name, '.');
+io.print('I am ', 21, '.');
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>My name is John. I am 21.
+</code></pre>
+<h3><a class="header" href="#println" id="println">println</a></h3>
+<pre><code>println(args...) -&gt; void
+</code></pre>
+<p>Print all given <code>args</code> to the standard output and add a new line after the last one</p>
+<p>Example:</p>
+<pre><code>let name = 'John';
+let age = '21';
+io.print('My name is ', name, '.');
+io.print('I am ', 21, '.');
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>My name is John. 
+I am 21.
+</code></pre>
+<h3><a class="header" href="#fprint" id="fprint">fprint</a></h3>
+<pre><code>fprint(file, args...) -&gt; void
+</code></pre>
+<p>Write args to file without new line</p>
+<h3><a class="header" href="#fprintln" id="fprintln">fprintln</a></h3>
+<pre><code>fprintln(file, args...) -&gt; void
+</code></pre>
+<p>Write args to file with new line</p>
+<h3><a class="header" href="#cprint" id="cprint">cprint</a></h3>
+<pre><code>cprint(args...) -&gt; void
+</code></pre>
+<p>Print args using color without new line</p>
+<h3><a class="header" href="#cprintln" id="cprintln">cprintln</a></h3>
+<pre><code>cprintln(args...) -&gt; void
+</code></pre>
+<p>Print args using color with new line</p>
+<h3><a class="header" href="#cdprint" id="cdprint">cdprint</a></h3>
+<pre><code>cdprint(args...) -&gt; void
+</code></pre>
+<h3><a class="header" href="#cdprintln" id="cdprintln">cdprintln</a></h3>
+<pre><code>cdprintln(args...) -&gt; void
+</code></pre>
+<h3><a class="header" href="#scan" id="scan">scan</a></h3>
+<pre><code>scan(prompt = '') -&gt; string
+</code></pre>
+<h3><a class="header" href="#scaneof" id="scaneof">scaneof</a></h3>
+<pre><code>scaneof(prompt = '') -&gt; string
+</code></pre>
+<h3><a class="header" href="#fflush" id="fflush">fflush</a></h3>
+<pre><code>fflush(file) -&gt; void
+</code></pre>
+<h3><a class="header" href="#stdout" id="stdout">stdout</a></h3>
+<p>Standard output</p>
+<h3><a class="header" href="#stderr" id="stderr">stderr</a></h3>
+<p>Error output</p>
 
                     </main>
 
