@@ -170,6 +170,9 @@
 <li><a href="#trim">trim</a></li>
 <li><a href="#split">split</a></li>
 <li><a href="#c_to_i">c_to_i</a></li>
+</ul>
+<h2><a class="header" href="#int-member-functions" id="int-member-functions"><code>int</code> Member Functions</a></h2>
+<ul>
 <li><a href="#i_to_c">i_to_c</a></li>
 </ul>
 <h3><a class="header" href="#len" id="len">len</a></h3>
@@ -202,7 +205,8 @@ true
 <p>Returns the first character of the string, or <code>nil</code> if the string is empty</p>
 <p>Example:</p>
 <pre><code>let io = import('std/io');
-io.println('hello'.push(' world'));
+io.println('hello'.front());
+io.println(''.front());
 
 </code></pre>
 <p>Gives the output:</p>
@@ -210,13 +214,13 @@ io.println('hello'.push(' world'));
 (nil)
 </code></pre>
 <h3><a class="header" href="#back" id="back">back</a></h3>
-<pre><code>front() -&gt; string
+<pre><code>back() -&gt; string
 </code></pre>
 <p>Returns the last character of the string, or <code>nil</code> if the string is empty</p>
 <p>Example:</p>
 <pre><code>let io = import('std/io');
-io.println('hello'.front());
-io.println(''.empty());
+io.println('hello'.back());
+io.println(''.back());
 </code></pre>
 <p>Gives the output:</p>
 <pre><code>o

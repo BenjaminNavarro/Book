@@ -861,6 +861,9 @@ io.fprintln(io.stderr, 'We have a problem');
 <li><a href="std/3-std-strings.html#trim">trim</a></li>
 <li><a href="std/3-std-strings.html#split">split</a></li>
 <li><a href="std/3-std-strings.html#c_to_i">c_to_i</a></li>
+</ul>
+<h2><a class="header" href="#int-member-functions" id="int-member-functions"><code>int</code> Member Functions</a></h2>
+<ul>
 <li><a href="std/3-std-strings.html#i_to_c">i_to_c</a></li>
 </ul>
 <h3><a class="header" href="#len" id="len">len</a></h3>
@@ -893,7 +896,8 @@ true
 <p>Returns the first character of the string, or <code>nil</code> if the string is empty</p>
 <p>Example:</p>
 <pre><code>let io = import('std/io');
-io.println('hello'.push(' world'));
+io.println('hello'.front());
+io.println(''.front());
 
 </code></pre>
 <p>Gives the output:</p>
@@ -901,13 +905,13 @@ io.println('hello'.push(' world'));
 (nil)
 </code></pre>
 <h3><a class="header" href="#back" id="back">back</a></h3>
-<pre><code>front() -&gt; string
+<pre><code>back() -&gt; string
 </code></pre>
 <p>Returns the last character of the string, or <code>nil</code> if the string is empty</p>
 <p>Example:</p>
 <pre><code>let io = import('std/io');
-io.println('hello'.front());
-io.println(''.empty());
+io.println('hello'.back());
+io.println(''.back());
 </code></pre>
 <p>Gives the output:</p>
 <pre><code>o
@@ -1056,6 +1060,226 @@ io.println(48.i_to_c());
 <pre><code>0
 </code></pre>
 <h1><a class="header" href="#vectors" id="vectors">Vectors</a></h1>
+<p>The <strong>vec</strong> module defines the <code>vector</code> type and all vector manipulation related functions.</p>
+<p>A <code>vector</code> is a sequence container that can storing heterogeneous types.</p>
+<p>All the given examples assume that the <strong>vec</strong> module was imported using:</p>
+<pre><code>vec = import('std/vec');
+</code></pre>
+<h2><a class="header" href="#functions-2" id="functions-2">Functions</a></h2>
+<ul>
+<li><a href="std/4-std-vectors.html#new">new</a></li>
+</ul>
+<h2><a class="header" href="#vector-member-functions" id="vector-member-functions"><code>vector</code> Member Functions</a></h2>
+<ul>
+<li><a href="std/4-std-vectors.html#len">len</a></li>
+<li><a href="std/4-std-vectors.html#empty">empty</a></li>
+<li><a href="std/4-std-vectors.html#front">front</a></li>
+<li><a href="std/4-std-vectors.html#back">back</a></li>
+<li><a href="std/4-std-vectors.html#push">push</a></li>
+<li><a href="std/4-std-vectors.html#pop">pop</a></li>
+<li><a href="std/4-std-vectors.html#insert">insert</a></li>
+<li><a href="std/4-std-vectors.html#erase">erase</a></li>
+<li><a href="std/4-std-vectors.html#lastidx">lastidx</a></li>
+<li><a href="std/4-std-vectors.html#set">set</a></li>
+<li><a href="std/4-std-vectors.html#at">at</a></li>
+<li><a href="std/4-std-vectors.html#operator-">operator []</a></li>
+<li><a href="std/4-std-vectors.html#each">each</a></li>
+<li><a href="std/4-std-vectors.html#slice">slice</a></li>
+<li><a href="std/4-std-vectors.html#next">next</a></li>
+</ul>
+<h3><a class="header" href="#new" id="new">new</a></h3>
+<pre><code>new(args...) -&gt; vector
+</code></pre>
+<p>Creates a new vector using the given values</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+let v = vec.new(12, 'Hello', 3.14);
+io.println(v);
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>[12, Hello, 3.14000000000000012434]
+</code></pre>
+<h3><a class="header" href="#len-1" id="len-1">len</a></h3>
+<pre><code>len() -&gt; int
+</code></pre>
+<p>Returns the number of elements</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+io.println(vec.new(0, 1, 2).len());
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>3
+</code></pre>
+<h3><a class="header" href="#empty-1" id="empty-1">empty</a></h3>
+<pre><code>empty() -&gt; bool
+</code></pre>
+<p>Checks whether the vector is empty </p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+io.println(vec.new(0, 1, 2).empty());
+io.println(vec.new().empty());
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>false
+true
+</code></pre>
+<h3><a class="header" href="#front-1" id="front-1">front</a></h3>
+<pre><code>front() -&gt; vector
+</code></pre>
+<p>Returns the first character of the vector, or <code>nil</code> if the vector is empty</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+io.println('hello'.push(' world'));
+
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>h
+(nil)
+</code></pre>
+<h3><a class="header" href="#back-1" id="back-1">back</a></h3>
+<pre><code>front() -&gt; vector
+</code></pre>
+<p>Returns the last character of the vector, or <code>nil</code> if the vector is empty</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+io.println('hello'.front());
+io.println(''.empty());
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>o
+(nil)
+</code></pre>
+<h3><a class="header" href="#push-1" id="push-1">push</a></h3>
+<pre><code>push(str: vector) -&gt; vector
+</code></pre>
+<p>Appends <code>str</code> to the vector and returns the modified vector</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+let hello = 'hello';
+hello.push(', ');
+io.println(hello.push('world!'));
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>hello, world!
+</code></pre>
+<h3><a class="header" href="#pop-1" id="pop-1">pop</a></h3>
+<pre><code>vector.pop() -&gt; vector
+</code></pre>
+<p>Removes the last character and returns the modified vector</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+let hello = 'hello';
+hello.pop();
+io.println(hello.pop());
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>hel
+</code></pre>
+<h3><a class="header" href="#insert-1" id="insert-1">insert</a></h3>
+<pre><code>vector.insert(idx: int, str: vector) -&gt; vector
+</code></pre>
+<p>Inserts the <code>str</code> vector at index <code>idx</code> and returns the modified vector</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+let hello = 'heo';
+hello.insert(2, 'll');
+io.println(hello);
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>hello
+</code></pre>
+<h3><a class="header" href="#erase-1" id="erase-1">erase</a></h3>
+<pre><code>vector.erase(idx: int) -&gt; vector
+</code></pre>
+<p>Removes one character at index <code>idx</code> and returns the modified vector</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+let hello = 'helloo';
+hello.erase(4);
+io.println(hello);
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>hello
+</code></pre>
+<h3><a class="header" href="#lastidx-1" id="lastidx-1">lastidx</a></h3>
+<pre><code>vector.lastidx() -&gt; int
+</code></pre>
+<p>Returns the index of the last character. Equivalent to <code>len() - 1</code> </p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+io.println('hello'.lastidx());
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>4
+</code></pre>
+<h3><a class="header" href="#set-1" id="set-1">set</a></h3>
+<pre><code>vector.set(idx: int, char: vector) -&gt; vector
+</code></pre>
+<p>Replaces the character at index <code>idx</code> with <code>char</code> and returns the modified vector</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+let hello = 'hello_';
+hello.set(5, '!');
+io.println(hello);
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>hello!
+</code></pre>
+<h3><a class="header" href="#at-1" id="at-1">at</a></h3>
+<pre><code>vector.at(idx: int) -&gt; vector
+</code></pre>
+<p>Returns the character at index <code>idx</code>, or <code>nil</code> if out of range</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+io.println('hello'.at(0));
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>h
+</code></pre>
+<h3><a class="header" href="#operator--1" id="operator--1">operator []</a></h3>
+<pre><code>vector[idx: int] -&gt; vector
+</code></pre>
+<p>Returns the character at index <code>idx</code>, or <code>nil</code> if out of range</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+io.println('hello'[0]);
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>h
+</code></pre>
+<h3><a class="header" href="#each" id="each">each</a></h3>
+<pre><code>vector.each() -&gt; vector
+</code></pre>
+<p>Removes all whitespace characters at the beginning and at the end of the vector and returns the modified vector</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+io.println('_', '   hello   '.trim(), '_');
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>_hello_
+</code></pre>
+<h3><a class="header" href="#slice" id="slice">slice</a></h3>
+<pre><code>vector.slice(delim: vector = ':') -&gt; vector&lt;vector&gt;
+</code></pre>
+<p>Splits the vector using <code>delim</code> as a single character delimiter and returns a vector of vectors</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+io.println('hello;world'.split(';'));
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>[hello, world]
+</code></pre>
+<h3><a class="header" href="#next" id="next">next</a></h3>
+<pre><code>vector.next() -&gt; int
+</code></pre>
+<p>Converts the first character to its ASCII integer representation. Returns 0 if the vector is empty</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+io.println('0'.c_to_i());
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>48
+</code></pre>
 <h1><a class="header" href="#maps" id="maps">Maps</a></h1>
 <h1><a class="header" href="#fs" id="fs">FS</a></h1>
 <h1><a class="header" href="#os" id="os">OS</a></h1>
