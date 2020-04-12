@@ -172,9 +172,9 @@
 <li><a href="#stderr">stderr</a></li>
 </ul>
 <h3><a class="header" href="#print" id="print">print</a></h3>
-<pre><code>print(args...) -&gt; void
+<pre><code>print(args...) -&gt; nil
 </code></pre>
-<p>Print all given <code>args</code> to the standard output without adding a new line after the last one</p>
+<p>Prints all given <code>args</code> to the standard output without adding a new line after the last one</p>
 <p>Example:</p>
 <pre><code>let name = 'John';
 let age = '21';
@@ -185,9 +185,9 @@ io.print('I am ', 21, '.');
 <pre><code>My name is John. I am 21.
 </code></pre>
 <h3><a class="header" href="#println" id="println">println</a></h3>
-<pre><code>println(args...) -&gt; void
+<pre><code>println(args...) -&gt; nil
 </code></pre>
-<p>Print all given <code>args</code> to the standard output and add a new line after the last one</p>
+<p>Prints all given <code>args</code> to the standard output and add a new line after the last one</p>
 <p>Example:</p>
 <pre><code>let name = 'John';
 let age = '21';
@@ -199,9 +199,9 @@ io.print('I am ', 21, '.');
 I am 21.
 </code></pre>
 <h3><a class="header" href="#fprint" id="fprint">fprint</a></h3>
-<pre><code>fprint(file: file, args...) -&gt; void
+<pre><code>fprint(file: file, args...) -&gt; nil
 </code></pre>
-<p>Write all given <code>args</code> to <code>file</code> without adding a new line after the last one</p>
+<p>Writes all given <code>args</code> to <code>file</code> without adding a new line after the last one</p>
 <p>Example:</p>
 <pre><code>let fs = import('std/fs');
 let file = fs.open('hello.txt', 'w')
@@ -214,9 +214,9 @@ io.fprint(file, 'I am ', 21, '.');
 <pre><code>My name is John. I am 21.
 </code></pre>
 <h3><a class="header" href="#fprintln" id="fprintln">fprintln</a></h3>
-<pre><code>fprintln(file: file, args...) -&gt; void
+<pre><code>fprintln(file: file, args...) -&gt; nil
 </code></pre>
-<p>Write all given <code>args</code> to <code>file</code> and add a new line after the last one</p>
+<p>Writes all given <code>args</code> to <code>file</code> and add a new line after the last one</p>
 <p>Example:</p>
 <pre><code>let fs = import('std/fs');
 let file = fs.open('hello.txt', 'w')
@@ -230,9 +230,9 @@ io.fprint(file, 'I am ', 21, '.');
 I am 21.
 </code></pre>
 <h3><a class="header" href="#cprint" id="cprint">cprint</a></h3>
-<pre><code>print(args...) -&gt; void
+<pre><code>print(args...) -&gt; nil
 </code></pre>
-<p>Print all given <code>args</code> to the standard output without adding a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprint</code> call and will remain active until another one comes in.</p>
+<p>Prints all given <code>args</code> to the standard output without adding a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprint</code> call and will remain active until another one comes in.</p>
 <p>Example:</p>
 <pre><code>io.cprint('{r}ERROR: Unexpected failure.');       # Printed in red
 io.cprint('ERROR: Failed to connect to server.'); # Printed in red
@@ -258,9 +258,9 @@ io.cprint('{0}INFO: Operation successful.');      # Printed in default color
 <li><code>{bw}</code> : Bold white</li>
 </ul>
 <h3><a class="header" href="#cprintln" id="cprintln">cprintln</a></h3>
-<pre><code>cprintln(args...) -&gt; void
+<pre><code>cprintln(args...) -&gt; nil
 </code></pre>
-<p>Print all given <code>args</code> to the standard output and add a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprintln</code> call and will remain active until another one comes in.</p>
+<p>Prints all given <code>args</code> to the standard output and add a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprintln</code> call and will remain active until another one comes in.</p>
 <p>Example:</p>
 <pre><code>io.cprintln('{r}ERROR: Unexpected failure.');       # Printed in red
 io.cprintln('ERROR: Failed to connect to server.'); # Printed in red, on a new line
@@ -269,9 +269,9 @@ io.cprintln('{0}INFO: Operation successful.');      # Printed in default color, 
 </code></pre>
 <p>For the list of available color codes, please refer to <a href="#cprint">cprint</a></p>
 <h3><a class="header" href="#cdprint" id="cdprint">cdprint</a></h3>
-<pre><code>cdprint(args...) -&gt; void
+<pre><code>cdprint(args...) -&gt; nil
 </code></pre>
-<p>Print all given <code>args</code> to the error output without adding a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprint</code> call and will remain active until another one comes in.</p>
+<p>Prints all given <code>args</code> to the error output without adding a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprint</code> call and will remain active until another one comes in.</p>
 <p>Example:</p>
 <pre><code>io.cprint('{r}ERROR: Unexpected failure.');       # Printed in red on `stderr`
 io.cprint('ERROR: Failed to connect to server.'); # Printed in red on `stderr`
@@ -280,9 +280,9 @@ io.cprint('{0}INFO: Operation successful.');      # Printed in default color on 
 </code></pre>
 <p>For the list of available color codes, please refer to <a href="#cprint">cprint</a></p>
 <h3><a class="header" href="#cdprintln" id="cdprintln">cdprintln</a></h3>
-<pre><code>cdprintln(args...) -&gt; void
+<pre><code>cdprintln(args...) -&gt; nil
 </code></pre>
-<p>Print all given <code>args</code> to the standard output and add a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprintln</code> call and will remain active until another one comes in.</p>
+<p>Prints all given <code>args</code> to the standard output and add a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprintln</code> call and will remain active until another one comes in.</p>
 <p>Example:</p>
 <pre><code>io.cprintln('{r}ERROR: Unexpected failure.');       # Printed in red on `stderr`
 io.cprintln('ERROR: Failed to connect to server.'); # Printed in red, on a new line on `stderr`
@@ -293,7 +293,7 @@ io.cprintln('{0}INFO: Operation successful.');      # Printed in default color, 
 <h3><a class="header" href="#scan" id="scan">scan</a></h3>
 <pre><code>scan(prompt: string = '') -&gt; string
 </code></pre>
-<p>Read a single line of text from the standard input. </p>
+<p>Reads a single line of text from the standard input. </p>
 <p>An optional <code>prompt</code> parameter can be passed to write the given string before reading the standard input.</p>
 <p>Example:</p>
 <pre><code>let input = io.scan('Enter your age: ');
@@ -306,7 +306,7 @@ You are 21 years old
 <h3><a class="header" href="#scaneof" id="scaneof">scaneof</a></h3>
 <pre><code>scaneof(prompt: string = '') -&gt; string
 </code></pre>
-<p>Read text from the standard input until <em>EOF</em> is found. Even id <em>EOF</em> can be emitted by a user (usually <em>CTRL-D</em> on UNIX), <code>scaneof</code> is more likely to be useful when a <strong>Feral</strong> script takes as an input the output of another program.</p>
+<p>Reads text from the standard input until <em>EOF</em> is found. Even id <em>EOF</em> can be emitted by a user (usually <em>CTRL-D</em> on UNIX), <code>scaneof</code> is more likely to be useful when a <strong>Feral</strong> script takes as an input the output of another program.</p>
 <p>An optional <code>prompt</code> parameter can be passed to write the given string before reading the standard input.</p>
 <p>Example (<em>bio.fer</em>):</p>
 <pre><code>let input = io.scaneof();
@@ -320,9 +320,9 @@ Here is everything we know about you:
 My name is John Doe,I am 21 years old,I live on Mars
 </code></pre>
 <h3><a class="header" href="#fflush" id="fflush">fflush</a></h3>
-<pre><code>fflush(file: file) -&gt; void
+<pre><code>fflush(file: file) -&gt; nil
 </code></pre>
-<p>Force all unwritten data to be written to the <code>file</code>.</p>
+<p>Forces all unwritten data to be written to the <code>file</code>.</p>
 <p><code>fflush</code> is useful because writes to <code>stdout</code>, <code>stderr</code> or any typical files are usually buffered and their content may not immediately be updated.</p>
 <p>Example:</p>
 <pre><code>io.print('Enter your age: ');

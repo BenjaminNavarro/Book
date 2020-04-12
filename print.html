@@ -647,9 +647,9 @@ for ; !v.empty(); {
 <li><a href="std/1-std-io.html#stderr">stderr</a></li>
 </ul>
 <h3><a class="header" href="#print" id="print">print</a></h3>
-<pre><code>print(args...) -&gt; void
+<pre><code>print(args...) -&gt; nil
 </code></pre>
-<p>Print all given <code>args</code> to the standard output without adding a new line after the last one</p>
+<p>Prints all given <code>args</code> to the standard output without adding a new line after the last one</p>
 <p>Example:</p>
 <pre><code>let name = 'John';
 let age = '21';
@@ -660,9 +660,9 @@ io.print('I am ', 21, '.');
 <pre><code>My name is John. I am 21.
 </code></pre>
 <h3><a class="header" href="#println" id="println">println</a></h3>
-<pre><code>println(args...) -&gt; void
+<pre><code>println(args...) -&gt; nil
 </code></pre>
-<p>Print all given <code>args</code> to the standard output and add a new line after the last one</p>
+<p>Prints all given <code>args</code> to the standard output and add a new line after the last one</p>
 <p>Example:</p>
 <pre><code>let name = 'John';
 let age = '21';
@@ -674,9 +674,9 @@ io.print('I am ', 21, '.');
 I am 21.
 </code></pre>
 <h3><a class="header" href="#fprint" id="fprint">fprint</a></h3>
-<pre><code>fprint(file: file, args...) -&gt; void
+<pre><code>fprint(file: file, args...) -&gt; nil
 </code></pre>
-<p>Write all given <code>args</code> to <code>file</code> without adding a new line after the last one</p>
+<p>Writes all given <code>args</code> to <code>file</code> without adding a new line after the last one</p>
 <p>Example:</p>
 <pre><code>let fs = import('std/fs');
 let file = fs.open('hello.txt', 'w')
@@ -689,9 +689,9 @@ io.fprint(file, 'I am ', 21, '.');
 <pre><code>My name is John. I am 21.
 </code></pre>
 <h3><a class="header" href="#fprintln" id="fprintln">fprintln</a></h3>
-<pre><code>fprintln(file: file, args...) -&gt; void
+<pre><code>fprintln(file: file, args...) -&gt; nil
 </code></pre>
-<p>Write all given <code>args</code> to <code>file</code> and add a new line after the last one</p>
+<p>Writes all given <code>args</code> to <code>file</code> and add a new line after the last one</p>
 <p>Example:</p>
 <pre><code>let fs = import('std/fs');
 let file = fs.open('hello.txt', 'w')
@@ -705,9 +705,9 @@ io.fprint(file, 'I am ', 21, '.');
 I am 21.
 </code></pre>
 <h3><a class="header" href="#cprint" id="cprint">cprint</a></h3>
-<pre><code>print(args...) -&gt; void
+<pre><code>print(args...) -&gt; nil
 </code></pre>
-<p>Print all given <code>args</code> to the standard output without adding a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprint</code> call and will remain active until another one comes in.</p>
+<p>Prints all given <code>args</code> to the standard output without adding a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprint</code> call and will remain active until another one comes in.</p>
 <p>Example:</p>
 <pre><code>io.cprint('{r}ERROR: Unexpected failure.');       # Printed in red
 io.cprint('ERROR: Failed to connect to server.'); # Printed in red
@@ -733,9 +733,9 @@ io.cprint('{0}INFO: Operation successful.');      # Printed in default color
 <li><code>{bw}</code> : Bold white</li>
 </ul>
 <h3><a class="header" href="#cprintln" id="cprintln">cprintln</a></h3>
-<pre><code>cprintln(args...) -&gt; void
+<pre><code>cprintln(args...) -&gt; nil
 </code></pre>
-<p>Print all given <code>args</code> to the standard output and add a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprintln</code> call and will remain active until another one comes in.</p>
+<p>Prints all given <code>args</code> to the standard output and add a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprintln</code> call and will remain active until another one comes in.</p>
 <p>Example:</p>
 <pre><code>io.cprintln('{r}ERROR: Unexpected failure.');       # Printed in red
 io.cprintln('ERROR: Failed to connect to server.'); # Printed in red, on a new line
@@ -744,9 +744,9 @@ io.cprintln('{0}INFO: Operation successful.');      # Printed in default color, 
 </code></pre>
 <p>For the list of available color codes, please refer to <a href="std/1-std-io.html#cprint">cprint</a></p>
 <h3><a class="header" href="#cdprint" id="cdprint">cdprint</a></h3>
-<pre><code>cdprint(args...) -&gt; void
+<pre><code>cdprint(args...) -&gt; nil
 </code></pre>
-<p>Print all given <code>args</code> to the error output without adding a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprint</code> call and will remain active until another one comes in.</p>
+<p>Prints all given <code>args</code> to the error output without adding a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprint</code> call and will remain active until another one comes in.</p>
 <p>Example:</p>
 <pre><code>io.cprint('{r}ERROR: Unexpected failure.');       # Printed in red on `stderr`
 io.cprint('ERROR: Failed to connect to server.'); # Printed in red on `stderr`
@@ -755,9 +755,9 @@ io.cprint('{0}INFO: Operation successful.');      # Printed in default color on 
 </code></pre>
 <p>For the list of available color codes, please refer to <a href="std/1-std-io.html#cprint">cprint</a></p>
 <h3><a class="header" href="#cdprintln" id="cdprintln">cdprintln</a></h3>
-<pre><code>cdprintln(args...) -&gt; void
+<pre><code>cdprintln(args...) -&gt; nil
 </code></pre>
-<p>Print all given <code>args</code> to the standard output and add a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprintln</code> call and will remain active until another one comes in.</p>
+<p>Prints all given <code>args</code> to the standard output and add a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprintln</code> call and will remain active until another one comes in.</p>
 <p>Example:</p>
 <pre><code>io.cprintln('{r}ERROR: Unexpected failure.');       # Printed in red on `stderr`
 io.cprintln('ERROR: Failed to connect to server.'); # Printed in red, on a new line on `stderr`
@@ -768,7 +768,7 @@ io.cprintln('{0}INFO: Operation successful.');      # Printed in default color, 
 <h3><a class="header" href="#scan" id="scan">scan</a></h3>
 <pre><code>scan(prompt: string = '') -&gt; string
 </code></pre>
-<p>Read a single line of text from the standard input. </p>
+<p>Reads a single line of text from the standard input. </p>
 <p>An optional <code>prompt</code> parameter can be passed to write the given string before reading the standard input.</p>
 <p>Example:</p>
 <pre><code>let input = io.scan('Enter your age: ');
@@ -781,7 +781,7 @@ You are 21 years old
 <h3><a class="header" href="#scaneof" id="scaneof">scaneof</a></h3>
 <pre><code>scaneof(prompt: string = '') -&gt; string
 </code></pre>
-<p>Read text from the standard input until <em>EOF</em> is found. Even id <em>EOF</em> can be emitted by a user (usually <em>CTRL-D</em> on UNIX), <code>scaneof</code> is more likely to be useful when a <strong>Feral</strong> script takes as an input the output of another program.</p>
+<p>Reads text from the standard input until <em>EOF</em> is found. Even id <em>EOF</em> can be emitted by a user (usually <em>CTRL-D</em> on UNIX), <code>scaneof</code> is more likely to be useful when a <strong>Feral</strong> script takes as an input the output of another program.</p>
 <p>An optional <code>prompt</code> parameter can be passed to write the given string before reading the standard input.</p>
 <p>Example (<em>bio.fer</em>):</p>
 <pre><code>let input = io.scaneof();
@@ -795,9 +795,9 @@ Here is everything we know about you:
 My name is John Doe,I am 21 years old,I live on Mars
 </code></pre>
 <h3><a class="header" href="#fflush" id="fflush">fflush</a></h3>
-<pre><code>fflush(file: file) -&gt; void
+<pre><code>fflush(file: file) -&gt; nil
 </code></pre>
-<p>Force all unwritten data to be written to the <code>file</code>.</p>
+<p>Forces all unwritten data to be written to the <code>file</code>.</p>
 <p><code>fflush</code> is useful because writes to <code>stdout</code>, <code>stderr</code> or any typical files are usually buffered and their content may not immediately be updated.</p>
 <p>Example:</p>
 <pre><code>io.print('Enter your age: ');
@@ -839,6 +839,222 @@ io.fprintln(io.stderr, 'We have a problem');
 </code></pre>
 <h1><a class="header" href="#structures--enums" id="structures--enums">Structures &amp; Enums</a></h1>
 <h1><a class="header" href="#strings-1" id="strings-1">Strings</a></h1>
+<p>The <strong>str</strong> module defines the <code>string</code> type and all string manipulation related functions.</p>
+<p>A <code>string</code> is a sequence of characters. There is no character type in <strong>Feral</strong> and so are represented are one character strings.</p>
+<p>All the given examples assume that the <strong>str</strong> module was imported using:</p>
+<pre><code>import('std/str');
+</code></pre>
+<h2><a class="header" href="#string-member-functions" id="string-member-functions"><code>string</code> Member Functions</a></h2>
+<ul>
+<li><a href="std/3-std-strings.html#len">len</a></li>
+<li><a href="std/3-std-strings.html#empty">empty</a></li>
+<li><a href="std/3-std-strings.html#front">front</a></li>
+<li><a href="std/3-std-strings.html#back">back</a></li>
+<li><a href="std/3-std-strings.html#push">push</a></li>
+<li><a href="std/3-std-strings.html#pop">pop</a></li>
+<li><a href="std/3-std-strings.html#insert">insert</a></li>
+<li><a href="std/3-std-strings.html#erase">erase</a></li>
+<li><a href="std/3-std-strings.html#lastidx">lastidx</a></li>
+<li><a href="std/3-std-strings.html#set">set</a></li>
+<li><a href="std/3-std-strings.html#at">at</a></li>
+<li><a href="std/3-std-strings.html#operator-">operator []</a></li>
+<li><a href="std/3-std-strings.html#trim">trim</a></li>
+<li><a href="std/3-std-strings.html#split">split</a></li>
+<li><a href="std/3-std-strings.html#c_to_i">c_to_i</a></li>
+<li><a href="std/3-std-strings.html#i_to_c">i_to_c</a></li>
+</ul>
+<h3><a class="header" href="#len" id="len">len</a></h3>
+<pre><code>len() -&gt; int
+</code></pre>
+<p>Returns the number of characters</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+io.println('hello'.len());
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>5
+</code></pre>
+<h3><a class="header" href="#empty" id="empty">empty</a></h3>
+<pre><code>empty() -&gt; bool
+</code></pre>
+<p>Checks whether the string is empty </p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+io.println('hello'.empty());
+io.println(''.empty());
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>false
+true
+</code></pre>
+<h3><a class="header" href="#front" id="front">front</a></h3>
+<pre><code>front() -&gt; string
+</code></pre>
+<p>Returns the first character of the string, or <code>nil</code> if the string is empty</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+io.println('hello'.push(' world'));
+
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>h
+(nil)
+</code></pre>
+<h3><a class="header" href="#back" id="back">back</a></h3>
+<pre><code>front() -&gt; string
+</code></pre>
+<p>Returns the last character of the string, or <code>nil</code> if the string is empty</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+io.println('hello'.front());
+io.println(''.empty());
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>o
+(nil)
+</code></pre>
+<h3><a class="header" href="#push" id="push">push</a></h3>
+<pre><code>push(str: string) -&gt; string
+</code></pre>
+<p>Appends <code>str</code> to the string and returns the modified string</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+let hello = 'hello';
+hello.push(', ');
+io.println(hello.push('world!'));
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>hello, world!
+</code></pre>
+<h3><a class="header" href="#pop" id="pop">pop</a></h3>
+<pre><code>string.pop() -&gt; string
+</code></pre>
+<p>Removes the last character and returns the modified string</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+let hello = 'hello';
+hello.pop();
+io.println(hello.pop());
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>hel
+</code></pre>
+<h3><a class="header" href="#insert" id="insert">insert</a></h3>
+<pre><code>string.insert(idx: int, str: string) -&gt; string
+</code></pre>
+<p>Inserts the <code>str</code> string at index <code>idx</code> and returns the modified string</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+let hello = 'heo';
+hello.insert(2, 'll');
+io.println(hello);
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>hello
+</code></pre>
+<h3><a class="header" href="#erase" id="erase">erase</a></h3>
+<pre><code>string.erase(idx: int) -&gt; string
+</code></pre>
+<p>Removes one character at index <code>idx</code> and returns the modified string</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+let hello = 'helloo';
+hello.erase(4);
+io.println(hello);
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>hello
+</code></pre>
+<h3><a class="header" href="#lastidx" id="lastidx">lastidx</a></h3>
+<pre><code>string.lastidx() -&gt; int
+</code></pre>
+<p>Returns the index of the last character. Equivalent to <code>len() - 1</code> </p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+io.println('hello'.lastidx());
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>4
+</code></pre>
+<h3><a class="header" href="#set" id="set">set</a></h3>
+<pre><code>string.set(idx: int, char: string) -&gt; string
+</code></pre>
+<p>Replaces the character at index <code>idx</code> with <code>char</code> and returns the modified string</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+let hello = 'hello_';
+hello.set(5, '!');
+io.println(hello);
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>hello!
+</code></pre>
+<h3><a class="header" href="#at" id="at">at</a></h3>
+<pre><code>string.at(idx: int) -&gt; string
+</code></pre>
+<p>Returns the character at index <code>idx</code>, or <code>nil</code> if out of range</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+io.println('hello'.at(0));
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>h
+</code></pre>
+<h3><a class="header" href="#operator-" id="operator-">operator []</a></h3>
+<pre><code>string[idx: int] -&gt; string
+</code></pre>
+<p>Returns the character at index <code>idx</code>, or <code>nil</code> if out of range</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+io.println('hello'[0]);
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>h
+</code></pre>
+<h3><a class="header" href="#trim" id="trim">trim</a></h3>
+<pre><code>string.trim() -&gt; string
+</code></pre>
+<p>Removes all whitespace characters at the beginning and at the end of the string and returns the modified string</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+io.println('_', '   hello   '.trim(), '_');
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>_hello_
+</code></pre>
+<h3><a class="header" href="#split" id="split">split</a></h3>
+<pre><code>string.split(delim: string = ':') -&gt; vector&lt;string&gt;
+</code></pre>
+<p>Splits the string using <code>delim</code> as a single character delimiter and returns a vector of strings</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+io.println('hello;world'.split(';'));
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>[hello, world]
+</code></pre>
+<h3><a class="header" href="#c_to_i" id="c_to_i">c_to_i</a></h3>
+<pre><code>string.c_to_i() -&gt; int
+</code></pre>
+<p>Converts the first character to its ASCII integer representation. Returns 0 if the string is empty</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+io.println('0'.c_to_i());
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>48
+</code></pre>
+<h3><a class="header" href="#i_to_c" id="i_to_c">i_to_c</a></h3>
+<pre><code>int.i_to_c() -&gt; string
+</code></pre>
+<p>Converts an integer from its ASCII integer representation to a string</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+io.println(48.i_to_c());
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>0
+</code></pre>
 <h1><a class="header" href="#vectors" id="vectors">Vectors</a></h1>
 <h1><a class="header" href="#maps" id="maps">Maps</a></h1>
 <h1><a class="header" href="#fs" id="fs">FS</a></h1>
