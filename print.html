@@ -838,6 +838,76 @@ io.fprintln(io.stderr, 'We have a problem');
 <pre><code>We have a problem
 </code></pre>
 <h1><a class="header" href="#lang" id="lang">Lang</a></h1>
+<p>The <strong>lang</strong> module offers a way to create user-defined structures and enumerations.</p>
+<p>A structure can pack together variables and functions, which allow object-oriented programming.</p>
+<p>An enumeration is a set of names bounds to constant numerical values.</p>
+<pre><code>let lang = import('std/lang');
+</code></pre>
+<h2><a class="header" href="#functions-2" id="functions-2">Functions</a></h2>
+<ul>
+<li><a href="std/2-std-lang.html#struct">struct</a></li>
+<li><a href="std/2-std-lang.html#enum">enum</a></li>
+</ul>
+<h3><a class="header" href="#struct" id="struct">Struct</a></h3>
+<pre><code>lang.struct(field = value, ...) -&gt; type
+</code></pre>
+<p>Creates a new structure type type holding a set of <code>field</code>s. The given <code>value</code>s are used to infer the type of each field and as default values during construction. The return type can be used to instantiate objects of this type.</p>
+<p>Adding member functions to a type is done with the <code>let func in type = fn(args) {}</code> construct, with <code>func</code> being the function's name. Inside the function, variables and functions belonging to the type can be accessed using the <code>self</code> keyword.</p>
+<p>Example:</p>
+<pre><code>let io = import('std/io');
+let player_t = lang.struct(name = &quot;John&quot;, class = &quot;Mage&quot;, health = 100, attack = 10);
+
+# str is used by print functions to print the content of an object
+let str in player_t = fn() {
+    let desc = '';
+    desc += &quot;name: &quot; + self.name.str();
+    desc += &quot;, class: &quot; + self.class.str();
+    desc += &quot;, health: &quot; + self.health.str();
+    desc += &quot;, attack: &quot; + self.attack.str();
+    return desc;
+};
+
+let take_damage in player_t = fn(damage) {
+    io.println('Taking ', damage, ' damage');
+    self.health -= damage;
+    return self;
+};
+
+let player = player_t(&quot;Bob&quot;, attack = 20);  # Positional and named arguments allowed
+io.println(player);                         # Calls player.str()
+player.take_damage(30).take_damage(10);     # Possible thanks to 'return self'
+io.println(player);
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>name: Bob, class: Mage, health: 100, attack: 20
+Taking 30 damage
+Taking 10 damage
+name: Bob, class: Mage, health: 60, attack: 20
+</code></pre>
+<h3><a class="header" href="#enum" id="enum">Enum</a></h3>
+<pre><code>lang.enum(.name1, .name2 = value, ...) -&gt; type
+</code></pre>
+<p>Creates a new enumeration with the given <code>name</code>s and optionally given <code>value</code>s. Names must be prefixed with a dot.</p>
+<p>Example:</p>
+<pre><code>let class = lang.enum(.Mage, .Warrior, .Mecromancer, .Unknown = -1);
+let player_t = lang.struct(name = &quot;John&quot;, class = class.Unknown, health = 100, attack = 10);
+
+let str in player_t = fn() {
+    let desc = '';
+    desc += &quot;name: &quot; + self.name.str();
+    desc += &quot;, class: &quot; + self.class.str();
+    desc += &quot;, health: &quot; + self.health.str();
+    desc += &quot;, attack: &quot; + self.attack.str();
+    return desc;
+};
+
+io.println(player_t(&quot;Bob&quot;, class.Mage));
+io.println(player_t(&quot;Josh&quot;));
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>name: Bob, class: 0, health: 100, attack: 10
+name: Josh, class: -1, health: 100, attack: 10
+</code></pre>
 <h1><a class="header" href="#strings-1" id="strings-1">Strings</a></h1>
 <p>The <strong>str</strong> module defines the <code>string</code> type and all string manipulation related functions.</p>
 <p>A <code>string</code> is a sequence of characters. There is no character type in <strong>Feral</strong> and so are represented are one character strings.</p>
@@ -1071,7 +1141,7 @@ io.println(48.i_to_c());
 <p>All the given examples assume that the <strong>vec</strong> module was imported using:</p>
 <pre><code>vec = import('std/vec');
 </code></pre>
-<h2><a class="header" href="#functions-2" id="functions-2">Functions</a></h2>
+<h2><a class="header" href="#functions-3" id="functions-3">Functions</a></h2>
 <ul>
 <li><a href="std/4-std-vectors.html#new">new</a></li>
 </ul>
