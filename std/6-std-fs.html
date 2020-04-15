@@ -148,6 +148,198 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#fs" id="fs">FS</a></h1>
+<p>The <strong>fs</strong> module allow to access and manipulate the file system</p>
+<p>All the given examples assume that the <strong>fs</strong> module was imported using:</p>
+<pre><code>fs = import('std/fs');
+let io = import('std/io');
+</code></pre>
+<p>And that the following file hierarchy exists in the file system:</p>
+<pre><code>- dir1
+ |- foo.txt
+ |- bar.txt
+ |- dir2
+    |- hello.txt
+    |- world.txt
+</code></pre>
+<h2><a class="header" href="#functions" id="functions">Functions</a></h2>
+<ul>
+<li><a href="#exists">exists</a></li>
+<li><a href="#open">open</a></li>
+<li><a href="#walkdir">walkdir</a></li>
+</ul>
+<h2><a class="header" href="#file-member-functions" id="file-member-functions"><code>file</code> Member Functions</a></h2>
+<ul>
+<li><a href="#lines">lines</a></li>
+<li><a href="#read_blocks">read_blocks</a></li>
+<li><a href="#seek">seek</a></li>
+<li><a href="#each_line">each_line</a></li>
+<li><a href="#next">next</a></li>
+</ul>
+<h3><a class="header" href="#exists" id="exists">exists</a></h3>
+<pre><code>fs.exists(path: string) -&gt; bool
+</code></pre>
+<p>Returns true if the given <code>path</code> exists in the file system and false otherwise</p>
+<p>Example:</p>
+<pre><code>io.println(fs.exists('dir1/foo.txt'));
+io.println(fs.exists('dir2/foo.txt'));
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>true
+false
+</code></pre>
+<h3><a class="header" href="#open" id="open">open</a></h3>
+<pre><code>fs.open(path: string, mode: string = 'r') -&gt; file
+</code></pre>
+<p>Opens the given file <code>path</code> using the (optional) <code>mode</code>. <code>mode</code> can be any of the following:</p>
+<table><thead><tr><th>Mode</th><th>Description</th></tr></thead><tbody>
+<tr><td>r</td><td>Open a file for reading</td></tr>
+<tr><td>w</td><td>Create a file for writing</td></tr>
+<tr><td>a</td><td>Append to a file</td></tr>
+<tr><td>r+</td><td>Open a file for read/write</td></tr>
+<tr><td>w+</td><td>Create a file for read/write</td></tr>
+<tr><td>a+</td><td>Open a file for read/write</td></tr>
+</tbody></table>
+<p>Note: Appending 'x' to either 'w' or 'w+' will cause the function to fail if the file already exists. This may prevents overwriting existing files.</p>
+<p>Example:</p>
+<pre><code>let file = fs.open('dir1/foo.txt', 'r');
+</code></pre>
+<h3><a class="header" href="#walkdir" id="walkdir">walkdir</a></h3>
+<pre><code>fs.walkdir(dir: string, mode: int = WALK_RECURSE, regex: string = '(.*)') -&gt; vector
+</code></pre>
+<p>Returns a vector of all file paths in <code>path</code> using the (optional) <code>mode</code> and <code>regex</code>. <code>mode</code> can be any combination of the following:</p>
+<table><thead><tr><th>Mode</th><th>Description</th></tr></thead><tbody>
+<tr><td>fs.WALK_FILES</td><td>List only files</td></tr>
+<tr><td>fs.WALK_DIRS</td><td>List only directories</td></tr>
+<tr><td>fs.WALK_RECURSE</td><td>Search recursively</td></tr>
+</tbody></table>
+<p>The default <code>regex</code> matches all file names.</p>
+<p>Example:</p>
+<pre><code># Recursively finds all files in dir1 ending with o.txt
+let files = fs.walkdir('dir1', fs.WALK_FILES + fs.WALK_RECURSE, '(.*o\.txt)');
+io.println(files);
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>[dir1/foo.txt, dir1/dir2/hello.txt]
+</code></pre>
+<h3><a class="header" href="#lines" id="lines">lines</a></h3>
+<pre><code>file.lines() -&gt; vector
+</code></pre>
+<p>Returns a vector containing all lines in the file</p>
+<p>Example:</p>
+<pre><code>let file = fs.open('dir1/bar.txt');
+io.println(file.lines());
+</code></pre>
+<p>Gives output:</p>
+<pre><code>[My, name, is, John]
+</code></pre>
+<p>Given the file <code>dir1/bar.txt</code>:</p>
+<pre><code>My
+name
+is
+John
+</code></pre>
+<h3><a class="header" href="#read_blocks" id="read_blocks">read_blocks</a></h3>
+<pre><code>file.read_blocks(begin: string, end: string) -&gt; vector
+</code></pre>
+<p>Returns an iterator pointing to the first line, allowing easy vector iteration</p>
+<p>Example:</p>
+<pre><code>import('std/vec');
+
+let file = fs.open('dir1/foo.txt');
+let quotes = file.read_blocks('&quot;', '&quot;');
+io.println(&quot;Quotes found:&quot;);
+for quote in quotes.each() {
+    io.println(&quot; - &quot;, quote);
+}
+</code></pre>
+<p>Gives output:</p>
+<pre><code>Quotes found:
+ - The greatest glory in living lies not in never falling, but in rising every time we fall.
+ - The way to get started is to quit talking and begin doing.
+ - Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking.
+</code></pre>
+<p>Given the file <code>dir1/foo.txt</code>:</p>
+<pre><code>Top quotes:
+&quot;The greatest glory in living lies not in never falling, but in rising every time we fall.&quot; -Nelson Mandela
+&quot;The way to get started is to quit talking and begin doing.&quot; -Walt Disney
+&quot;Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking.&quot; -Steve Jobs
+</code></pre>
+<h3><a class="header" href="#seek" id="seek">seek</a></h3>
+<pre><code>file.seek(offset: int, origin: int) -&gt; int
+</code></pre>
+<p>Moves the file position indicator to the given <code>offset</code> starting at <code>origin</code>. <code>origin</code> can be any of the following:</p>
+<table><thead><tr><th>Origin</th><th>Description</th></tr></thead><tbody>
+<tr><td>SEEK_SET</td><td>Beginning of the file</td></tr>
+<tr><td>SEEK_CUR</td><td>Current file position</td></tr>
+<tr><td>SEEK_END</td><td>End of the file</td></tr>
+</tbody></table>
+<p>Example:</p>
+<pre><code>let file = fs.open('dir1/bar.txt');
+io.println(file.lines());
+file.seek(5, fs.SEEK_SET);
+io.println(file.lines());
+file.seek(-5, fs.SEEK_END);
+io.println(file.lines());
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>[My, name, is, John]
+[me, is, John]
+[John]
+</code></pre>
+<p>Given the file <code>dir1/bar.txt</code>:</p>
+<pre><code>My
+name
+is
+John
+</code></pre>
+<h3><a class="header" href="#each_lines" id="each_lines">each_lines</a></h3>
+<pre><code>file.each_lines() -&gt; iterator
+</code></pre>
+<p>Returns an iterator pointing to the first line, allowing easy vector iteration</p>
+<p>Example:</p>
+<pre><code>let file = fs.open('dir1/bar.txt');
+for line in file.each_line() {
+    io.println(line);
+}
+</code></pre>
+<p>Gives output:</p>
+<pre><code>[My, name, is, John]
+</code></pre>
+<p>Given the file <code>dir1/bar.txt</code>:</p>
+<pre><code>My
+name
+is
+John
+</code></pre>
+<h3><a class="header" href="#next" id="next">next</a></h3>
+<pre><code>iterator.next() -&gt; string
+</code></pre>
+<p>Returns the line pointed by the iterator, or <code>nil</code> if out of range, and then advances the iterator to the next line</p>
+<p>Example:</p>
+<pre><code>let file = fs.open('dir1/bar.txt');
+let iter = file.each_line();
+while true {
+    let line = iter.next();
+    if line != nil {
+        io.println(line);
+    }
+    else {
+        break;
+    }
+}
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>My
+name
+is
+John
+</code></pre>
+<p>Given the file <code>dir1/bar.txt</code>:</p>
+<pre><code>My
+name
+is
+John
+</code></pre>
 
                     </main>
 

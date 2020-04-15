@@ -150,8 +150,9 @@
                         <h1><a class="header" href="#vectors" id="vectors">Vectors</a></h1>
 <p>The <strong>vec</strong> module defines the <code>vector</code> type and all the vector manipulation related functions.</p>
 <p>A <code>vector</code> is a sequence container that can store heterogeneous types.</p>
-<p>All the given examples assume that the <strong>vec</strong> module was imported using:</p>
-<pre><code>vec = import('std/vec');
+<p>All the given examples assume the following imports:</p>
+<pre><code>let vec = import('std/vec');
+let io = import('std/io');
 </code></pre>
 <h2><a class="header" href="#functions" id="functions">Functions</a></h2>
 <ul>
@@ -171,8 +172,8 @@
 <li><a href="#set">set</a></li>
 <li><a href="#at">at</a></li>
 <li><a href="#operator-">operator []</a></li>
-<li><a href="#each">each</a></li>
 <li><a href="#slice">slice</a></li>
+<li><a href="#each">each</a></li>
 <li><a href="#next">next</a></li>
 </ul>
 <h3><a class="header" href="#new" id="new">new</a></h3>
@@ -180,8 +181,7 @@
 </code></pre>
 <p>Creates a new vector using the given elements</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(12, 'Hello', 3.14);
+<pre><code>let v = vec.new(12, 'Hello', 3.14);
 io.println(v);
 </code></pre>
 <p>Gives the output:</p>
@@ -192,8 +192,7 @@ io.println(v);
 </code></pre>
 <p>Returns the number of elements inside the vector</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println(vec.new(0, 1, 2).len());
+<pre><code>io.println(vec.new(0, 1, 2).len());
 </code></pre>
 <p>Gives the output:</p>
 <pre><code>3
@@ -203,8 +202,7 @@ io.println(vec.new(0, 1, 2).len());
 </code></pre>
 <p>Checks whether the vector is empty</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println(vec.new(0, 1, 2).empty());
+<pre><code>io.println(vec.new(0, 1, 2).empty());
 io.println(vec.new().empty());
 </code></pre>
 <p>Gives the output:</p>
@@ -216,8 +214,7 @@ true
 </code></pre>
 <p>Returns the first element of the vector, or <code>nil</code> if the vector is empty</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println(vec.new(0, 1, 2).front());
+<pre><code>io.println(vec.new(0, 1, 2).front());
 io.println(vec.new().front());
 </code></pre>
 <p>Gives the output:</p>
@@ -229,8 +226,7 @@ io.println(vec.new().front());
 </code></pre>
 <p>Returns the last element of the vector, or <code>nil</code> if the vector is empty</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println(vec.new(0, 1, 2).back());
+<pre><code>io.println(vec.new(0, 1, 2).back());
 io.println(vec.new().back());
 </code></pre>
 <p>Gives the output:</p>
@@ -242,8 +238,7 @@ io.println(vec.new().back());
 </code></pre>
 <p>Appends <code>elem</code> to the vector and returns the modified vector</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(0);
+<pre><code>let v = vec.new(0);
 v.push(1);
 io.println(v.push(2));
 </code></pre>
@@ -255,8 +250,7 @@ io.println(v.push(2));
 </code></pre>
 <p>Removes the last element and returns the modified vector</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(0, 1, 2);
+<pre><code>let v = vec.new(0, 1, 2);
 v.pop();
 io.println(v.pop());
 </code></pre>
@@ -268,8 +262,7 @@ io.println(v.pop());
 </code></pre>
 <p>Inserts the <code>elem</code> element at index <code>idx</code> and returns the modified vector</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(0, 2);
+<pre><code>let v = vec.new(0, 2);
 v.insert(2, 3);
 io.println(v.insert(1, 1));
 </code></pre>
@@ -281,8 +274,7 @@ io.println(v.insert(1, 1));
 </code></pre>
 <p>Removes one element at index <code>idx</code> and returns the modified vector</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(0, 1, 9, 12, 2);
+<pre><code>let v = vec.new(0, 1, 9, 12, 2);
 v.erase(3);
 io.println(v.erase(2));
 </code></pre>
@@ -305,8 +297,7 @@ io.println(v.lastidx());
 </code></pre>
 <p>Replaces the element at index <code>idx</code> with <code>elem</code> and returns the modified vector</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(0, 0, 0);
+<pre><code>let v = vec.new(0, 0, 0);
 v.set(0, 2);
 io.println(v.set(1, 1));
 </code></pre>
@@ -318,8 +309,7 @@ io.println(v.set(1, 1));
 </code></pre>
 <p>Returns the element at index <code>idx</code>, or <code>nil</code> if out of range</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(0, 1, 2);
+<pre><code>let v = vec.new(0, 1, 2);
 io.println(v.at(2));
 io.println(v.at(3));
 </code></pre>
@@ -332,8 +322,7 @@ io.println(v.at(3));
 </code></pre>
 <p>Returns the element at index <code>idx</code>, or <code>nil</code> if out of range</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(0, 1, 2);
+<pre><code>let v = vec.new(0, 1, 2);
 io.println(v[2]);
 io.println(v[3]);
 </code></pre>
@@ -346,8 +335,7 @@ io.println(v[3]);
 </code></pre>
 <p>Extracts the elements from <code>start</code> to <code>end - 1</code> and returns them in a new vector. If <code>end == -1</code> then the slice ends at the end of the vector</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(0, 1, 2, 3);
+<pre><code>let v = vec.new(0, 1, 2, 3);
 io.println(v.slice(1));
 io.println(v.slice(1, 3));
 </code></pre>
@@ -360,8 +348,7 @@ io.println(v.slice(1, 3));
 </code></pre>
 <p>Returns an iterator pointing to the first element, allowing easy vector iteration</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(0, 1, 2);
+<pre><code>let v = vec.new(0, 1, 2);
 for elem in v.each() {
     io.println(elem);
 }
@@ -376,8 +363,7 @@ for elem in v.each() {
 </code></pre>
 <p>Returns the value pointed by the iterator, or <code>nil</code> if out of range, and then advances the iterator to the next element</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(0, 1, 2, 3);
+<pre><code>let v = vec.new(0, 1, 2, 3);
 let iter = v.each();
 for i in range(v.len() + 1) {
     io.println(iter.next());

@@ -150,8 +150,9 @@
                         <h1><a class="header" href="#strings" id="strings">Strings</a></h1>
 <p>The <strong>str</strong> module defines the <code>string</code> type and all string manipulation related functions.</p>
 <p>A <code>string</code> is a sequence of characters. There is no character type in <strong>Feral</strong> and so are represented are one character strings.</p>
-<p>All the given examples assume that the <strong>str</strong> module was imported using:</p>
+<p>All the given examples assume the following imports:</p>
 <pre><code>import('std/str');
+let io = import('std/io');
 </code></pre>
 <h2><a class="header" href="#string-member-functions" id="string-member-functions"><code>string</code> Member Functions</a></h2>
 <ul>
@@ -180,8 +181,7 @@
 </code></pre>
 <p>Returns the number of characters</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println('hello'.len());
+<pre><code>io.println('hello'.len());
 </code></pre>
 <p>Gives the output:</p>
 <pre><code>5
@@ -191,8 +191,7 @@ io.println('hello'.len());
 </code></pre>
 <p>Checks whether the string is empty </p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println('hello'.empty());
+<pre><code>io.println('hello'.empty());
 io.println(''.empty());
 </code></pre>
 <p>Gives the output:</p>
@@ -204,10 +203,8 @@ true
 </code></pre>
 <p>Returns the first character of the string, or <code>nil</code> if the string is empty</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println('hello'.front());
+<pre><code>io.println('hello'.front());
 io.println(''.front());
-
 </code></pre>
 <p>Gives the output:</p>
 <pre><code>h
@@ -218,8 +215,7 @@ io.println(''.front());
 </code></pre>
 <p>Returns the last character of the string, or <code>nil</code> if the string is empty</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println('hello'.back());
+<pre><code>io.println('hello'.back());
 io.println(''.back());
 </code></pre>
 <p>Gives the output:</p>
@@ -231,8 +227,7 @@ io.println(''.back());
 </code></pre>
 <p>Appends <code>str</code> to the string and returns the modified string</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let hello = 'hello';
+<pre><code>let hello = 'hello';
 hello.push(', ');
 io.println(hello.push('world!'));
 </code></pre>
@@ -244,8 +239,7 @@ io.println(hello.push('world!'));
 </code></pre>
 <p>Removes the last character and returns the modified string</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let hello = 'hello';
+<pre><code>let hello = 'hello';
 hello.pop();
 io.println(hello.pop());
 </code></pre>
@@ -257,8 +251,7 @@ io.println(hello.pop());
 </code></pre>
 <p>Inserts the <code>str</code> string at index <code>idx</code> and returns the modified string</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let hello = 'heo';
+<pre><code>let hello = 'heo';
 hello.insert(2, 'll');
 io.println(hello);
 </code></pre>
@@ -270,8 +263,7 @@ io.println(hello);
 </code></pre>
 <p>Removes one character at index <code>idx</code> and returns the modified string</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let hello = 'helloo';
+<pre><code>let hello = 'helloo';
 hello.erase(4);
 io.println(hello);
 </code></pre>
@@ -283,8 +275,7 @@ io.println(hello);
 </code></pre>
 <p>Returns the index of the last character. Equivalent to <code>len() - 1</code> </p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println('hello'.lastidx());
+<pre><code>io.println('hello'.lastidx());
 </code></pre>
 <p>Gives the output:</p>
 <pre><code>4
@@ -294,8 +285,7 @@ io.println('hello'.lastidx());
 </code></pre>
 <p>Replaces the character at index <code>idx</code> with <code>char</code> and returns the modified string</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let hello = 'hello_';
+<pre><code>let hello = 'hello_';
 hello.set(5, '!');
 io.println(hello);
 </code></pre>
@@ -307,8 +297,7 @@ io.println(hello);
 </code></pre>
 <p>Returns the character at index <code>idx</code>, or <code>nil</code> if out of range</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let hello = 'hello';
+<pre><code>let hello = 'hello';
 io.println(hello.at(0));
 io.println(hello.at(5));
 </code></pre>
@@ -321,8 +310,7 @@ io.println(hello.at(5));
 </code></pre>
 <p>Returns the character at index <code>idx</code>, or <code>nil</code> if out of range</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let hello = 'hello';
+<pre><code>let hello = 'hello';
 io.println(hello.at(0));
 io.println(hello.at(5));
 </code></pre>
@@ -335,8 +323,7 @@ io.println(hello.at(5));
 </code></pre>
 <p>Removes all whitespace characters at the beginning and at the end of the string and returns the modified string</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println('_', '   hello   '.trim(), '_');
+<pre><code>io.println('_', '   hello   '.trim(), '_');
 </code></pre>
 <p>Gives the output:</p>
 <pre><code>_hello_
@@ -346,8 +333,7 @@ io.println('_', '   hello   '.trim(), '_');
 </code></pre>
 <p>Splits the string using <code>delim</code> as a single character delimiter and returns a vector of strings</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println('hello;world'.split(';'));
+<pre><code>io.println('hello;world'.split(';'));
 </code></pre>
 <p>Gives the output:</p>
 <pre><code>[hello, world]
@@ -357,8 +343,7 @@ io.println('hello;world'.split(';'));
 </code></pre>
 <p>Converts the first character to its ASCII integer representation. Returns 0 if the string is empty</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println('0'.c_to_i());
+<pre><code>io.println('0'.c_to_i());
 </code></pre>
 <p>Gives the output:</p>
 <pre><code>48
@@ -368,8 +353,7 @@ io.println('0'.c_to_i());
 </code></pre>
 <p>Converts an integer from its ASCII integer representation to a string</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println(48.i_to_c());
+<pre><code>io.println(48.i_to_c());
 </code></pre>
 <p>Gives the output:</p>
 <pre><code>0

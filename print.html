@@ -841,7 +841,9 @@ io.fprintln(io.stderr, 'We have a problem');
 <p>The <strong>lang</strong> module offers a way to create user-defined structures and enumerations.</p>
 <p>A structure can pack together variables and functions, which allow object-oriented programming.</p>
 <p>An enumeration is a set of names bounds to constant numerical values.</p>
+<p>All the given examples assume the following imports:</p>
 <pre><code>let lang = import('std/lang');
+let io = import('std/io');
 </code></pre>
 <h2><a class="header" href="#functions-2" id="functions-2">Functions</a></h2>
 <ul>
@@ -854,8 +856,7 @@ io.fprintln(io.stderr, 'We have a problem');
 <p>Creates a new structure type type holding a set of <code>field</code>s. The given <code>value</code>s are used to infer the type of each field and as default values during construction. The return type can be used to instantiate objects of this type.</p>
 <p>Adding member functions to a type is done with the <code>let func in type = fn(args) {}</code> construct, with <code>func</code> being the function's name. Inside the function, variables and functions belonging to the type can be accessed using the <code>self</code> keyword.</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let player_t = lang.struct(name = &quot;John&quot;, class = &quot;Mage&quot;, health = 100, attack = 10);
+<pre><code>let player_t = lang.struct(name = &quot;John&quot;, class = &quot;Mage&quot;, health = 100, attack = 10);
 
 # str is used by print functions to print the content of an object
 let str in player_t = fn() {
@@ -911,8 +912,9 @@ name: Josh, class: -1, health: 100, attack: 10
 <h1><a class="header" href="#strings-1" id="strings-1">Strings</a></h1>
 <p>The <strong>str</strong> module defines the <code>string</code> type and all string manipulation related functions.</p>
 <p>A <code>string</code> is a sequence of characters. There is no character type in <strong>Feral</strong> and so are represented are one character strings.</p>
-<p>All the given examples assume that the <strong>str</strong> module was imported using:</p>
+<p>All the given examples assume the following imports:</p>
 <pre><code>import('std/str');
+let io = import('std/io');
 </code></pre>
 <h2><a class="header" href="#string-member-functions" id="string-member-functions"><code>string</code> Member Functions</a></h2>
 <ul>
@@ -941,8 +943,7 @@ name: Josh, class: -1, health: 100, attack: 10
 </code></pre>
 <p>Returns the number of characters</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println('hello'.len());
+<pre><code>io.println('hello'.len());
 </code></pre>
 <p>Gives the output:</p>
 <pre><code>5
@@ -952,8 +953,7 @@ io.println('hello'.len());
 </code></pre>
 <p>Checks whether the string is empty </p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println('hello'.empty());
+<pre><code>io.println('hello'.empty());
 io.println(''.empty());
 </code></pre>
 <p>Gives the output:</p>
@@ -965,10 +965,8 @@ true
 </code></pre>
 <p>Returns the first character of the string, or <code>nil</code> if the string is empty</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println('hello'.front());
+<pre><code>io.println('hello'.front());
 io.println(''.front());
-
 </code></pre>
 <p>Gives the output:</p>
 <pre><code>h
@@ -979,8 +977,7 @@ io.println(''.front());
 </code></pre>
 <p>Returns the last character of the string, or <code>nil</code> if the string is empty</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println('hello'.back());
+<pre><code>io.println('hello'.back());
 io.println(''.back());
 </code></pre>
 <p>Gives the output:</p>
@@ -992,8 +989,7 @@ io.println(''.back());
 </code></pre>
 <p>Appends <code>str</code> to the string and returns the modified string</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let hello = 'hello';
+<pre><code>let hello = 'hello';
 hello.push(', ');
 io.println(hello.push('world!'));
 </code></pre>
@@ -1005,8 +1001,7 @@ io.println(hello.push('world!'));
 </code></pre>
 <p>Removes the last character and returns the modified string</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let hello = 'hello';
+<pre><code>let hello = 'hello';
 hello.pop();
 io.println(hello.pop());
 </code></pre>
@@ -1018,8 +1013,7 @@ io.println(hello.pop());
 </code></pre>
 <p>Inserts the <code>str</code> string at index <code>idx</code> and returns the modified string</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let hello = 'heo';
+<pre><code>let hello = 'heo';
 hello.insert(2, 'll');
 io.println(hello);
 </code></pre>
@@ -1031,8 +1025,7 @@ io.println(hello);
 </code></pre>
 <p>Removes one character at index <code>idx</code> and returns the modified string</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let hello = 'helloo';
+<pre><code>let hello = 'helloo';
 hello.erase(4);
 io.println(hello);
 </code></pre>
@@ -1044,8 +1037,7 @@ io.println(hello);
 </code></pre>
 <p>Returns the index of the last character. Equivalent to <code>len() - 1</code> </p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println('hello'.lastidx());
+<pre><code>io.println('hello'.lastidx());
 </code></pre>
 <p>Gives the output:</p>
 <pre><code>4
@@ -1055,8 +1047,7 @@ io.println('hello'.lastidx());
 </code></pre>
 <p>Replaces the character at index <code>idx</code> with <code>char</code> and returns the modified string</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let hello = 'hello_';
+<pre><code>let hello = 'hello_';
 hello.set(5, '!');
 io.println(hello);
 </code></pre>
@@ -1068,8 +1059,7 @@ io.println(hello);
 </code></pre>
 <p>Returns the character at index <code>idx</code>, or <code>nil</code> if out of range</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let hello = 'hello';
+<pre><code>let hello = 'hello';
 io.println(hello.at(0));
 io.println(hello.at(5));
 </code></pre>
@@ -1082,8 +1072,7 @@ io.println(hello.at(5));
 </code></pre>
 <p>Returns the character at index <code>idx</code>, or <code>nil</code> if out of range</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let hello = 'hello';
+<pre><code>let hello = 'hello';
 io.println(hello.at(0));
 io.println(hello.at(5));
 </code></pre>
@@ -1096,8 +1085,7 @@ io.println(hello.at(5));
 </code></pre>
 <p>Removes all whitespace characters at the beginning and at the end of the string and returns the modified string</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println('_', '   hello   '.trim(), '_');
+<pre><code>io.println('_', '   hello   '.trim(), '_');
 </code></pre>
 <p>Gives the output:</p>
 <pre><code>_hello_
@@ -1107,8 +1095,7 @@ io.println('_', '   hello   '.trim(), '_');
 </code></pre>
 <p>Splits the string using <code>delim</code> as a single character delimiter and returns a vector of strings</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println('hello;world'.split(';'));
+<pre><code>io.println('hello;world'.split(';'));
 </code></pre>
 <p>Gives the output:</p>
 <pre><code>[hello, world]
@@ -1118,8 +1105,7 @@ io.println('hello;world'.split(';'));
 </code></pre>
 <p>Converts the first character to its ASCII integer representation. Returns 0 if the string is empty</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println('0'.c_to_i());
+<pre><code>io.println('0'.c_to_i());
 </code></pre>
 <p>Gives the output:</p>
 <pre><code>48
@@ -1129,8 +1115,7 @@ io.println('0'.c_to_i());
 </code></pre>
 <p>Converts an integer from its ASCII integer representation to a string</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println(48.i_to_c());
+<pre><code>io.println(48.i_to_c());
 </code></pre>
 <p>Gives the output:</p>
 <pre><code>0
@@ -1138,8 +1123,9 @@ io.println(48.i_to_c());
 <h1><a class="header" href="#vectors" id="vectors">Vectors</a></h1>
 <p>The <strong>vec</strong> module defines the <code>vector</code> type and all the vector manipulation related functions.</p>
 <p>A <code>vector</code> is a sequence container that can store heterogeneous types.</p>
-<p>All the given examples assume that the <strong>vec</strong> module was imported using:</p>
-<pre><code>vec = import('std/vec');
+<p>All the given examples assume the following imports:</p>
+<pre><code>let vec = import('std/vec');
+let io = import('std/io');
 </code></pre>
 <h2><a class="header" href="#functions-3" id="functions-3">Functions</a></h2>
 <ul>
@@ -1159,8 +1145,8 @@ io.println(48.i_to_c());
 <li><a href="std/4-std-vectors.html#set">set</a></li>
 <li><a href="std/4-std-vectors.html#at">at</a></li>
 <li><a href="std/4-std-vectors.html#operator-">operator []</a></li>
-<li><a href="std/4-std-vectors.html#each">each</a></li>
 <li><a href="std/4-std-vectors.html#slice">slice</a></li>
+<li><a href="std/4-std-vectors.html#each">each</a></li>
 <li><a href="std/4-std-vectors.html#next">next</a></li>
 </ul>
 <h3><a class="header" href="#new" id="new">new</a></h3>
@@ -1168,8 +1154,7 @@ io.println(48.i_to_c());
 </code></pre>
 <p>Creates a new vector using the given elements</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(12, 'Hello', 3.14);
+<pre><code>let v = vec.new(12, 'Hello', 3.14);
 io.println(v);
 </code></pre>
 <p>Gives the output:</p>
@@ -1180,8 +1165,7 @@ io.println(v);
 </code></pre>
 <p>Returns the number of elements inside the vector</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println(vec.new(0, 1, 2).len());
+<pre><code>io.println(vec.new(0, 1, 2).len());
 </code></pre>
 <p>Gives the output:</p>
 <pre><code>3
@@ -1191,8 +1175,7 @@ io.println(vec.new(0, 1, 2).len());
 </code></pre>
 <p>Checks whether the vector is empty</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println(vec.new(0, 1, 2).empty());
+<pre><code>io.println(vec.new(0, 1, 2).empty());
 io.println(vec.new().empty());
 </code></pre>
 <p>Gives the output:</p>
@@ -1204,8 +1187,7 @@ true
 </code></pre>
 <p>Returns the first element of the vector, or <code>nil</code> if the vector is empty</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println(vec.new(0, 1, 2).front());
+<pre><code>io.println(vec.new(0, 1, 2).front());
 io.println(vec.new().front());
 </code></pre>
 <p>Gives the output:</p>
@@ -1217,8 +1199,7 @@ io.println(vec.new().front());
 </code></pre>
 <p>Returns the last element of the vector, or <code>nil</code> if the vector is empty</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-io.println(vec.new(0, 1, 2).back());
+<pre><code>io.println(vec.new(0, 1, 2).back());
 io.println(vec.new().back());
 </code></pre>
 <p>Gives the output:</p>
@@ -1230,8 +1211,7 @@ io.println(vec.new().back());
 </code></pre>
 <p>Appends <code>elem</code> to the vector and returns the modified vector</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(0);
+<pre><code>let v = vec.new(0);
 v.push(1);
 io.println(v.push(2));
 </code></pre>
@@ -1243,8 +1223,7 @@ io.println(v.push(2));
 </code></pre>
 <p>Removes the last element and returns the modified vector</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(0, 1, 2);
+<pre><code>let v = vec.new(0, 1, 2);
 v.pop();
 io.println(v.pop());
 </code></pre>
@@ -1256,8 +1235,7 @@ io.println(v.pop());
 </code></pre>
 <p>Inserts the <code>elem</code> element at index <code>idx</code> and returns the modified vector</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(0, 2);
+<pre><code>let v = vec.new(0, 2);
 v.insert(2, 3);
 io.println(v.insert(1, 1));
 </code></pre>
@@ -1269,8 +1247,7 @@ io.println(v.insert(1, 1));
 </code></pre>
 <p>Removes one element at index <code>idx</code> and returns the modified vector</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(0, 1, 9, 12, 2);
+<pre><code>let v = vec.new(0, 1, 9, 12, 2);
 v.erase(3);
 io.println(v.erase(2));
 </code></pre>
@@ -1293,8 +1270,7 @@ io.println(v.lastidx());
 </code></pre>
 <p>Replaces the element at index <code>idx</code> with <code>elem</code> and returns the modified vector</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(0, 0, 0);
+<pre><code>let v = vec.new(0, 0, 0);
 v.set(0, 2);
 io.println(v.set(1, 1));
 </code></pre>
@@ -1306,8 +1282,7 @@ io.println(v.set(1, 1));
 </code></pre>
 <p>Returns the element at index <code>idx</code>, or <code>nil</code> if out of range</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(0, 1, 2);
+<pre><code>let v = vec.new(0, 1, 2);
 io.println(v.at(2));
 io.println(v.at(3));
 </code></pre>
@@ -1320,8 +1295,7 @@ io.println(v.at(3));
 </code></pre>
 <p>Returns the element at index <code>idx</code>, or <code>nil</code> if out of range</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(0, 1, 2);
+<pre><code>let v = vec.new(0, 1, 2);
 io.println(v[2]);
 io.println(v[3]);
 </code></pre>
@@ -1334,8 +1308,7 @@ io.println(v[3]);
 </code></pre>
 <p>Extracts the elements from <code>start</code> to <code>end - 1</code> and returns them in a new vector. If <code>end == -1</code> then the slice ends at the end of the vector</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(0, 1, 2, 3);
+<pre><code>let v = vec.new(0, 1, 2, 3);
 io.println(v.slice(1));
 io.println(v.slice(1, 3));
 </code></pre>
@@ -1348,8 +1321,7 @@ io.println(v.slice(1, 3));
 </code></pre>
 <p>Returns an iterator pointing to the first element, allowing easy vector iteration</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(0, 1, 2);
+<pre><code>let v = vec.new(0, 1, 2);
 for elem in v.each() {
     io.println(elem);
 }
@@ -1364,8 +1336,7 @@ for elem in v.each() {
 </code></pre>
 <p>Returns the value pointed by the iterator, or <code>nil</code> if out of range, and then advances the iterator to the next element</p>
 <p>Example:</p>
-<pre><code>let io = import('std/io');
-let v = vec.new(0, 1, 2, 3);
+<pre><code>let v = vec.new(0, 1, 2, 3);
 let iter = v.each();
 for i in range(v.len() + 1) {
     io.println(iter.next());
@@ -1379,7 +1350,324 @@ for i in range(v.len() + 1) {
 (nil)
 </code></pre>
 <h1><a class="header" href="#maps" id="maps">Maps</a></h1>
+<p>The <strong>map</strong> module defines the <code>map</code> type and all the vector manipulation related functions.</p>
+<p>A <code>map</code> is an associative container that can store heterogeneous types.</p>
+<p>All the given examples assume the following imports:</p>
+<pre><code>let map = import('std/map');
+let io = import('std/io');
+</code></pre>
+<h2><a class="header" href="#functions-4" id="functions-4">Functions</a></h2>
+<ul>
+<li><a href="std/5-std-maps.html#new">new</a></li>
+</ul>
+<h2><a class="header" href="#map-member-functions" id="map-member-functions"><code>map</code> Member Functions</a></h2>
+<ul>
+<li><a href="std/5-std-maps.html#len">len</a></li>
+<li><a href="std/5-std-maps.html#insert">insert</a></li>
+<li><a href="std/5-std-maps.html#erase">erase</a></li>
+<li><a href="std/5-std-maps.html#get">get</a></li>
+<li><a href="std/5-std-maps.html#operator-">operator []</a></li>
+<li><a href="std/5-std-maps.html#find">find</a></li>
+<li><a href="std/5-std-maps.html#each">each</a></li>
+<li><a href="std/5-std-maps.html#next">next</a></li>
+</ul>
+<h3><a class="header" href="#new-1" id="new-1">new</a></h3>
+<pre><code>map.new(key1, value1, key2, value2, ...) -&gt; map
+</code></pre>
+<p>Creates a new map using the given key/value pairs. The keys must be convertible to <code>string</code>s. Also, it must correspond a value to each key, meaning that the number of arguments must always be even</p>
+<p>Example:</p>
+<pre><code>let m = map.new(0, &quot;Zero&quot;, 1, &quot;One&quot;, &quot;Answer?&quot;, 42);
+io.println(m);
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>{Answer?: 42, 0: Zero, 1: One}
+</code></pre>
+<p>Note that the elements are not stored in the order they are given. They are lexicographically sorted</p>
+<h3><a class="header" href="#len-2" id="len-2">len</a></h3>
+<pre><code>map.len() -&gt; int
+</code></pre>
+<p>Returns the number of key/value pairs inside the map</p>
+<p>Example:</p>
+<pre><code>io.println(map.new(0, &quot;Zero&quot;, 1, &quot;One&quot;, &quot;Answer?&quot;, 42).len());
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>3
+</code></pre>
+<h3><a class="header" href="#insert-2" id="insert-2">insert</a></h3>
+<pre><code>map.insert(key, value) -&gt; map
+</code></pre>
+<p>Inserts the <code>key</code>/<code>value</code> pair and returns the modified map</p>
+<p>Example:</p>
+<pre><code>let m = map.new(0, &quot;Zero&quot;);
+m.insert(1, &quot;One&quot;);
+io.println(m.insert(&quot;Answer?&quot;, 42));
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>{Answer?: 42, 0: Zero, 1: One}
+</code></pre>
+<h3><a class="header" href="#erase-2" id="erase-2">erase</a></h3>
+<pre><code>map.erase(key) -&gt; map
+</code></pre>
+<p>Removes the <code>key</code> and its associated value and returns the modified map</p>
+<p>Example:</p>
+<pre><code>let m = map.new(0, &quot;Zero&quot;, 1, &quot;One&quot;, &quot;Answer?&quot;, 42);
+m.erase(1);
+io.println(m.erase(&quot;Answer?&quot;));
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>{0: Zero}
+</code></pre>
+<h3><a class="header" href="#get" id="get">get</a></h3>
+<pre><code>map.get(key) -&gt; map
+</code></pre>
+<p>Returns the value associated with <code>key</code>, or <code>nil</code> if it doesn't exist</p>
+<p>Example:</p>
+<pre><code>let m = map.new(0, &quot;Zero&quot;, 1, &quot;One&quot;, &quot;Answer?&quot;, 42);
+io.println(m.get(&quot;Answer?&quot;));
+io.println(m.get(&quot;Oops&quot;));
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>42
+(nil)
+</code></pre>
+<h3><a class="header" href="#operator--2" id="operator--2">operator []</a></h3>
+<pre><code>map[key] -&gt; value
+</code></pre>
+<p>Returns the value associated with <code>key</code>, or <code>nil</code> if it doesn't exist</p>
+<p>Example:</p>
+<pre><code>let m = map.new(0, &quot;Zero&quot;, 1, &quot;One&quot;, &quot;Answer?&quot;, 42);
+io.println(m[&quot;Answer?&quot;]);
+io.println(m[&quot;Oops&quot;]);
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>2
+(nil)
+</code></pre>
+<h3><a class="header" href="#each-1" id="each-1">each</a></h3>
+<pre><code>map.each() -&gt; iterator
+</code></pre>
+<p>Returns an iterator pointing to the first key/value pair, allowing easy map iteration</p>
+<p>Example:</p>
+<pre><code>let m = map.new(0, &quot;Zero&quot;, 1, &quot;One&quot;, &quot;Answer?&quot;, 42);
+for elem in m.each() {
+    io.println(elem.0, &quot;: &quot;, elem.1);
+}
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>Answer?: 42
+0: Zero
+1: One
+</code></pre>
+<h3><a class="header" href="#next-1" id="next-1">next</a></h3>
+<pre><code>iterator.next() -&gt; value
+</code></pre>
+<p>Returns the key/value pair pointed by the iterator, or <code>nil</code> if out of range, and then advances the iterator to the next element</p>
+<p>Example:</p>
+<pre><code>let m = map.new(0, &quot;Zero&quot;, 1, &quot;One&quot;, &quot;Answer?&quot;, 42);
+let iter = m.each();
+for i in range(m.len()) {
+    let elem = iter.next();
+    io.println(elem.0, ': ', elem.1);
+}
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>Answer?: 42
+0: Zero
+1: One
+</code></pre>
 <h1><a class="header" href="#fs" id="fs">FS</a></h1>
+<p>The <strong>fs</strong> module allow to access and manipulate the file system</p>
+<p>All the given examples assume that the <strong>fs</strong> module was imported using:</p>
+<pre><code>fs = import('std/fs');
+let io = import('std/io');
+</code></pre>
+<p>And that the following file hierarchy exists in the file system:</p>
+<pre><code>- dir1
+ |- foo.txt
+ |- bar.txt
+ |- dir2
+    |- hello.txt
+    |- world.txt
+</code></pre>
+<h2><a class="header" href="#functions-5" id="functions-5">Functions</a></h2>
+<ul>
+<li><a href="std/6-std-fs.html#exists">exists</a></li>
+<li><a href="std/6-std-fs.html#open">open</a></li>
+<li><a href="std/6-std-fs.html#walkdir">walkdir</a></li>
+</ul>
+<h2><a class="header" href="#file-member-functions" id="file-member-functions"><code>file</code> Member Functions</a></h2>
+<ul>
+<li><a href="std/6-std-fs.html#lines">lines</a></li>
+<li><a href="std/6-std-fs.html#read_blocks">read_blocks</a></li>
+<li><a href="std/6-std-fs.html#seek">seek</a></li>
+<li><a href="std/6-std-fs.html#each_line">each_line</a></li>
+<li><a href="std/6-std-fs.html#next">next</a></li>
+</ul>
+<h3><a class="header" href="#exists" id="exists">exists</a></h3>
+<pre><code>fs.exists(path: string) -&gt; bool
+</code></pre>
+<p>Returns true if the given <code>path</code> exists in the file system and false otherwise</p>
+<p>Example:</p>
+<pre><code>io.println(fs.exists('dir1/foo.txt'));
+io.println(fs.exists('dir2/foo.txt'));
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>true
+false
+</code></pre>
+<h3><a class="header" href="#open" id="open">open</a></h3>
+<pre><code>fs.open(path: string, mode: string = 'r') -&gt; file
+</code></pre>
+<p>Opens the given file <code>path</code> using the (optional) <code>mode</code>. <code>mode</code> can be any of the following:</p>
+<table><thead><tr><th>Mode</th><th>Description</th></tr></thead><tbody>
+<tr><td>r</td><td>Open a file for reading</td></tr>
+<tr><td>w</td><td>Create a file for writing</td></tr>
+<tr><td>a</td><td>Append to a file</td></tr>
+<tr><td>r+</td><td>Open a file for read/write</td></tr>
+<tr><td>w+</td><td>Create a file for read/write</td></tr>
+<tr><td>a+</td><td>Open a file for read/write</td></tr>
+</tbody></table>
+<p>Note: Appending 'x' to either 'w' or 'w+' will cause the function to fail if the file already exists. This may prevents overwriting existing files.</p>
+<p>Example:</p>
+<pre><code>let file = fs.open('dir1/foo.txt', 'r');
+</code></pre>
+<h3><a class="header" href="#walkdir" id="walkdir">walkdir</a></h3>
+<pre><code>fs.walkdir(dir: string, mode: int = WALK_RECURSE, regex: string = '(.*)') -&gt; vector
+</code></pre>
+<p>Returns a vector of all file paths in <code>path</code> using the (optional) <code>mode</code> and <code>regex</code>. <code>mode</code> can be any combination of the following:</p>
+<table><thead><tr><th>Mode</th><th>Description</th></tr></thead><tbody>
+<tr><td>fs.WALK_FILES</td><td>List only files</td></tr>
+<tr><td>fs.WALK_DIRS</td><td>List only directories</td></tr>
+<tr><td>fs.WALK_RECURSE</td><td>Search recursively</td></tr>
+</tbody></table>
+<p>The default <code>regex</code> matches all file names.</p>
+<p>Example:</p>
+<pre><code># Recursively finds all files in dir1 ending with o.txt
+let files = fs.walkdir('dir1', fs.WALK_FILES + fs.WALK_RECURSE, '(.*o\.txt)');
+io.println(files);
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>[dir1/foo.txt, dir1/dir2/hello.txt]
+</code></pre>
+<h3><a class="header" href="#lines" id="lines">lines</a></h3>
+<pre><code>file.lines() -&gt; vector
+</code></pre>
+<p>Returns a vector containing all lines in the file</p>
+<p>Example:</p>
+<pre><code>let file = fs.open('dir1/bar.txt');
+io.println(file.lines());
+</code></pre>
+<p>Gives output:</p>
+<pre><code>[My, name, is, John]
+</code></pre>
+<p>Given the file <code>dir1/bar.txt</code>:</p>
+<pre><code>My
+name
+is
+John
+</code></pre>
+<h3><a class="header" href="#read_blocks" id="read_blocks">read_blocks</a></h3>
+<pre><code>file.read_blocks(begin: string, end: string) -&gt; vector
+</code></pre>
+<p>Returns an iterator pointing to the first line, allowing easy vector iteration</p>
+<p>Example:</p>
+<pre><code>import('std/vec');
+
+let file = fs.open('dir1/foo.txt');
+let quotes = file.read_blocks('&quot;', '&quot;');
+io.println(&quot;Quotes found:&quot;);
+for quote in quotes.each() {
+    io.println(&quot; - &quot;, quote);
+}
+</code></pre>
+<p>Gives output:</p>
+<pre><code>Quotes found:
+ - The greatest glory in living lies not in never falling, but in rising every time we fall.
+ - The way to get started is to quit talking and begin doing.
+ - Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking.
+</code></pre>
+<p>Given the file <code>dir1/foo.txt</code>:</p>
+<pre><code>Top quotes:
+&quot;The greatest glory in living lies not in never falling, but in rising every time we fall.&quot; -Nelson Mandela
+&quot;The way to get started is to quit talking and begin doing.&quot; -Walt Disney
+&quot;Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking.&quot; -Steve Jobs
+</code></pre>
+<h3><a class="header" href="#seek" id="seek">seek</a></h3>
+<pre><code>file.seek(offset: int, origin: int) -&gt; int
+</code></pre>
+<p>Moves the file position indicator to the given <code>offset</code> starting at <code>origin</code>. <code>origin</code> can be any of the following:</p>
+<table><thead><tr><th>Origin</th><th>Description</th></tr></thead><tbody>
+<tr><td>SEEK_SET</td><td>Beginning of the file</td></tr>
+<tr><td>SEEK_CUR</td><td>Current file position</td></tr>
+<tr><td>SEEK_END</td><td>End of the file</td></tr>
+</tbody></table>
+<p>Example:</p>
+<pre><code>let file = fs.open('dir1/bar.txt');
+io.println(file.lines());
+file.seek(5, fs.SEEK_SET);
+io.println(file.lines());
+file.seek(-5, fs.SEEK_END);
+io.println(file.lines());
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>[My, name, is, John]
+[me, is, John]
+[John]
+</code></pre>
+<p>Given the file <code>dir1/bar.txt</code>:</p>
+<pre><code>My
+name
+is
+John
+</code></pre>
+<h3><a class="header" href="#each_lines" id="each_lines">each_lines</a></h3>
+<pre><code>file.each_lines() -&gt; iterator
+</code></pre>
+<p>Returns an iterator pointing to the first line, allowing easy vector iteration</p>
+<p>Example:</p>
+<pre><code>let file = fs.open('dir1/bar.txt');
+for line in file.each_line() {
+    io.println(line);
+}
+</code></pre>
+<p>Gives output:</p>
+<pre><code>[My, name, is, John]
+</code></pre>
+<p>Given the file <code>dir1/bar.txt</code>:</p>
+<pre><code>My
+name
+is
+John
+</code></pre>
+<h3><a class="header" href="#next-2" id="next-2">next</a></h3>
+<pre><code>iterator.next() -&gt; string
+</code></pre>
+<p>Returns the line pointed by the iterator, or <code>nil</code> if out of range, and then advances the iterator to the next line</p>
+<p>Example:</p>
+<pre><code>let file = fs.open('dir1/bar.txt');
+let iter = file.each_line();
+while true {
+    let line = iter.next();
+    if line != nil {
+        io.println(line);
+    }
+    else {
+        break;
+    }
+}
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>My
+name
+is
+John
+</code></pre>
+<p>Given the file <code>dir1/bar.txt</code>:</p>
+<pre><code>My
+name
+is
+John
+</code></pre>
 <h1><a class="header" href="#os" id="os">OS</a></h1>
 <h1><a class="header" href="#sys" id="sys">Sys</a></h1>
 <h1><a class="header" href="#builder" id="builder">Builder</a></h1>

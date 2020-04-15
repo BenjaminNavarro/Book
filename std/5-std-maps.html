@@ -148,6 +148,131 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#maps" id="maps">Maps</a></h1>
+<p>The <strong>map</strong> module defines the <code>map</code> type and all the vector manipulation related functions.</p>
+<p>A <code>map</code> is an associative container that can store heterogeneous types.</p>
+<p>All the given examples assume the following imports:</p>
+<pre><code>let map = import('std/map');
+let io = import('std/io');
+</code></pre>
+<h2><a class="header" href="#functions" id="functions">Functions</a></h2>
+<ul>
+<li><a href="#new">new</a></li>
+</ul>
+<h2><a class="header" href="#map-member-functions" id="map-member-functions"><code>map</code> Member Functions</a></h2>
+<ul>
+<li><a href="#len">len</a></li>
+<li><a href="#insert">insert</a></li>
+<li><a href="#erase">erase</a></li>
+<li><a href="#get">get</a></li>
+<li><a href="#operator-">operator []</a></li>
+<li><a href="#find">find</a></li>
+<li><a href="#each">each</a></li>
+<li><a href="#next">next</a></li>
+</ul>
+<h3><a class="header" href="#new" id="new">new</a></h3>
+<pre><code>map.new(key1, value1, key2, value2, ...) -&gt; map
+</code></pre>
+<p>Creates a new map using the given key/value pairs. The keys must be convertible to <code>string</code>s. Also, it must correspond a value to each key, meaning that the number of arguments must always be even</p>
+<p>Example:</p>
+<pre><code>let m = map.new(0, &quot;Zero&quot;, 1, &quot;One&quot;, &quot;Answer?&quot;, 42);
+io.println(m);
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>{Answer?: 42, 0: Zero, 1: One}
+</code></pre>
+<p>Note that the elements are not stored in the order they are given. They are lexicographically sorted</p>
+<h3><a class="header" href="#len" id="len">len</a></h3>
+<pre><code>map.len() -&gt; int
+</code></pre>
+<p>Returns the number of key/value pairs inside the map</p>
+<p>Example:</p>
+<pre><code>io.println(map.new(0, &quot;Zero&quot;, 1, &quot;One&quot;, &quot;Answer?&quot;, 42).len());
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>3
+</code></pre>
+<h3><a class="header" href="#insert" id="insert">insert</a></h3>
+<pre><code>map.insert(key, value) -&gt; map
+</code></pre>
+<p>Inserts the <code>key</code>/<code>value</code> pair and returns the modified map</p>
+<p>Example:</p>
+<pre><code>let m = map.new(0, &quot;Zero&quot;);
+m.insert(1, &quot;One&quot;);
+io.println(m.insert(&quot;Answer?&quot;, 42));
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>{Answer?: 42, 0: Zero, 1: One}
+</code></pre>
+<h3><a class="header" href="#erase" id="erase">erase</a></h3>
+<pre><code>map.erase(key) -&gt; map
+</code></pre>
+<p>Removes the <code>key</code> and its associated value and returns the modified map</p>
+<p>Example:</p>
+<pre><code>let m = map.new(0, &quot;Zero&quot;, 1, &quot;One&quot;, &quot;Answer?&quot;, 42);
+m.erase(1);
+io.println(m.erase(&quot;Answer?&quot;));
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>{0: Zero}
+</code></pre>
+<h3><a class="header" href="#get" id="get">get</a></h3>
+<pre><code>map.get(key) -&gt; map
+</code></pre>
+<p>Returns the value associated with <code>key</code>, or <code>nil</code> if it doesn't exist</p>
+<p>Example:</p>
+<pre><code>let m = map.new(0, &quot;Zero&quot;, 1, &quot;One&quot;, &quot;Answer?&quot;, 42);
+io.println(m.get(&quot;Answer?&quot;));
+io.println(m.get(&quot;Oops&quot;));
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>42
+(nil)
+</code></pre>
+<h3><a class="header" href="#operator-" id="operator-">operator []</a></h3>
+<pre><code>map[key] -&gt; value
+</code></pre>
+<p>Returns the value associated with <code>key</code>, or <code>nil</code> if it doesn't exist</p>
+<p>Example:</p>
+<pre><code>let m = map.new(0, &quot;Zero&quot;, 1, &quot;One&quot;, &quot;Answer?&quot;, 42);
+io.println(m[&quot;Answer?&quot;]);
+io.println(m[&quot;Oops&quot;]);
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>2
+(nil)
+</code></pre>
+<h3><a class="header" href="#each" id="each">each</a></h3>
+<pre><code>map.each() -&gt; iterator
+</code></pre>
+<p>Returns an iterator pointing to the first key/value pair, allowing easy map iteration</p>
+<p>Example:</p>
+<pre><code>let m = map.new(0, &quot;Zero&quot;, 1, &quot;One&quot;, &quot;Answer?&quot;, 42);
+for elem in m.each() {
+    io.println(elem.0, &quot;: &quot;, elem.1);
+}
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>Answer?: 42
+0: Zero
+1: One
+</code></pre>
+<h3><a class="header" href="#next" id="next">next</a></h3>
+<pre><code>iterator.next() -&gt; value
+</code></pre>
+<p>Returns the key/value pair pointed by the iterator, or <code>nil</code> if out of range, and then advances the iterator to the next element</p>
+<p>Example:</p>
+<pre><code>let m = map.new(0, &quot;Zero&quot;, 1, &quot;One&quot;, &quot;Answer?&quot;, 42);
+let iter = m.each();
+for i in range(m.len()) {
+    let elem = iter.next();
+    io.println(elem.0, ': ', elem.1);
+}
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>Answer?: 42
+0: Zero
+1: One
+</code></pre>
 
                     </main>
 
