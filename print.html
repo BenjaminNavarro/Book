@@ -1453,7 +1453,7 @@ for i in range(m.len()) {
 1: One
 </code></pre>
 <h1><a class="header" href="#fs" id="fs">FS</a></h1>
-<p>The <strong>fs</strong> module allow to access and manipulate the file system</p>
+<p>The <strong>fs</strong> module allows to access and manipulate the file system</p>
 <p>All the given examples assume the following imports:</p>
 <pre><code>let fs = import('std/fs');
 let io = import('std/io');
@@ -1646,7 +1646,7 @@ is
 John
 </code></pre>
 <h1><a class="header" href="#os" id="os">OS</a></h1>
-<p>The <strong>os</strong> module allow to access to some functionalities of the underlying operating system</p>
+<p>The <strong>os</strong> module allows to access to some functionalities of the underlying operating system</p>
 <p>All the given examples assume the following imports:</p>
 <pre><code>let os = import('std/os');
 let io = import('std/io');
@@ -1803,7 +1803,85 @@ io.println(os.get_cwd());
 <pre><code>linux
 </code></pre>
 <h1><a class="header" href="#runtime" id="runtime">Runtime</a></h1>
+<p>The <strong>runtime</strong> module allows to inspect the programs at runtime</p>
+<p>All the given examples assume the following imports:</p>
+<pre><code>let rt = import('std/runtime');
+let io = import('std/io');
+</code></pre>
+<h2><a class="header" href="#functions-7" id="functions-7">Functions</a></h2>
+<ul>
+<li><a href="std/8-std-runtime.html#var_exists">var_exists</a></li>
+</ul>
+<h3><a class="header" href="#var_exists" id="var_exists">var_exists</a></h3>
+<pre><code>runtime.var_exists(name: str) -&gt; bool
+</code></pre>
+<p>Checks if the given variable name in known to the virtual machine</p>
+<p>Example:</p>
+<pre><code>io.println(rt.var_exists('hello'));
+let hello = 'Hello, world!';
+io.println(rt.var_exists('hello'));
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>false
+true
+</code></pre>
 <h1><a class="header" href="#ptr" id="ptr">Ptr</a></h1>
+<p>The <strong>ptr</strong> module defines the <code>ptr</code> type for pointer-like referencing and modification of existing variables</p>
+<p>All the given examples assume the following imports:</p>
+<pre><code>let ptr = import('std/ptr');
+let io = import('std/io');
+</code></pre>
+<h2><a class="header" href="#functions-8" id="functions-8">Functions</a></h2>
+<ul>
+<li><a href="std/9-std-ptr.html#new">new</a></li>
+</ul>
+<h2><a class="header" href="#ptr-member-functions" id="ptr-member-functions"><code>ptr</code> Member Functions</a></h2>
+<ul>
+<li><a href="std/9-std-ptr.html#set">set</a></li>
+<li><a href="std/9-std-ptr.html#get">get</a></li>
+</ul>
+<h3><a class="header" href="#new-2" id="new-2">new</a></h3>
+<pre><code>ptr.new(var = nil) -&gt; ptr
+</code></pre>
+<p>Creates a new pointer, optionally pointing to the given variable <code>var</code>.</p>
+<p>Example:</p>
+<pre><code>let answer = 42;
+let answer_ptr = ptr.new(answer);
+</code></pre>
+<h3><a class="header" href="#get-1" id="get-1">get</a></h3>
+<pre><code>ptr.get() -&gt; value
+</code></pre>
+<p>Returns the value pointed to, or <code>nil</code> or nil if it does not point to a variable. Can be used to modify to pointed variable</p>
+<p>Example:</p>
+<pre><code>let answer = 42;
+let answer_ptr = ptr.new(answer);
+io.println(answer_ptr.get());
+answer_ptr.get() = 12;
+io.println(answer);
+let nil_ptr = ptr.new();    
+io.println(nil_ptr.get());
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>42
+12
+(nil)
+</code></pre>
+<h3><a class="header" href="#set-2" id="set-2">set</a></h3>
+<pre><code>ptr.set(value) -&gt; ptr
+</code></pre>
+<p>Makes the pointer point to <code>value</code></p>
+<p>Example:</p>
+<pre><code>let answer = 42;
+let pi = 3.14;
+let answer_ptr = ptr.new(answer);
+io.println(answer_ptr.get());
+answer_ptr.set(pi);
+io.println(answer_ptr.get());
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>42
+3.14
+</code></pre>
 <h1><a class="header" href="#sys" id="sys">Sys</a></h1>
 <h1><a class="header" href="#builder" id="builder">Builder</a></h1>
 <h1><a class="header" href="#core-functions" id="core-functions">Core Functions</a></h1>

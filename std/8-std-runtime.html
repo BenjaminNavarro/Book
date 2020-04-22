@@ -148,6 +148,28 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#runtime" id="runtime">Runtime</a></h1>
+<p>The <strong>runtime</strong> module allows to inspect the programs at runtime</p>
+<p>All the given examples assume the following imports:</p>
+<pre><code>let rt = import('std/runtime');
+let io = import('std/io');
+</code></pre>
+<h2><a class="header" href="#functions" id="functions">Functions</a></h2>
+<ul>
+<li><a href="#var_exists">var_exists</a></li>
+</ul>
+<h3><a class="header" href="#var_exists" id="var_exists">var_exists</a></h3>
+<pre><code>runtime.var_exists(name: str) -&gt; bool
+</code></pre>
+<p>Checks if the given variable name in known to the virtual machine</p>
+<p>Example:</p>
+<pre><code>io.println(rt.var_exists('hello'));
+let hello = 'Hello, world!';
+io.println(rt.var_exists('hello'));
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>false
+true
+</code></pre>
 
                     </main>
 

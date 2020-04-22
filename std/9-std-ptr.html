@@ -148,6 +148,62 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#ptr" id="ptr">Ptr</a></h1>
+<p>The <strong>ptr</strong> module defines the <code>ptr</code> type for pointer-like referencing and modification of existing variables</p>
+<p>All the given examples assume the following imports:</p>
+<pre><code>let ptr = import('std/ptr');
+let io = import('std/io');
+</code></pre>
+<h2><a class="header" href="#functions" id="functions">Functions</a></h2>
+<ul>
+<li><a href="#new">new</a></li>
+</ul>
+<h2><a class="header" href="#ptr-member-functions" id="ptr-member-functions"><code>ptr</code> Member Functions</a></h2>
+<ul>
+<li><a href="#set">set</a></li>
+<li><a href="#get">get</a></li>
+</ul>
+<h3><a class="header" href="#new" id="new">new</a></h3>
+<pre><code>ptr.new(var = nil) -&gt; ptr
+</code></pre>
+<p>Creates a new pointer, optionally pointing to the given variable <code>var</code>.</p>
+<p>Example:</p>
+<pre><code>let answer = 42;
+let answer_ptr = ptr.new(answer);
+</code></pre>
+<h3><a class="header" href="#get" id="get">get</a></h3>
+<pre><code>ptr.get() -&gt; value
+</code></pre>
+<p>Returns the value pointed to, or <code>nil</code> or nil if it does not point to a variable. Can be used to modify to pointed variable</p>
+<p>Example:</p>
+<pre><code>let answer = 42;
+let answer_ptr = ptr.new(answer);
+io.println(answer_ptr.get());
+answer_ptr.get() = 12;
+io.println(answer);
+let nil_ptr = ptr.new();    
+io.println(nil_ptr.get());
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>42
+12
+(nil)
+</code></pre>
+<h3><a class="header" href="#set" id="set">set</a></h3>
+<pre><code>ptr.set(value) -&gt; ptr
+</code></pre>
+<p>Makes the pointer point to <code>value</code></p>
+<p>Example:</p>
+<pre><code>let answer = 42;
+let pi = 3.14;
+let answer_ptr = ptr.new(answer);
+io.println(answer_ptr.get());
+answer_ptr.set(pi);
+io.println(answer_ptr.get());
+</code></pre>
+<p>Gives the output:</p>
+<pre><code>42
+3.14
+</code></pre>
 
                     </main>
 
