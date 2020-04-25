@@ -149,7 +149,7 @@
                     <main>
                         <h1><a class="header" href="#lang" id="lang">Lang</a></h1>
 <p>The <strong>lang</strong> module offers a way to create user-defined structures and enumerations.</p>
-<p>A structure can pack together variables and functions, which allow object-oriented programming.</p>
+<p>A structure can pack together variables and functions, which allows object-oriented programming.</p>
 <p>An enumeration is a set of names bounds to constant numerical values.</p>
 <p>All the given examples assume the following imports:</p>
 <pre><code>let lang = import('std/lang');
@@ -163,8 +163,8 @@ let io = import('std/io');
 <h3><a class="header" href="#struct" id="struct">Struct</a></h3>
 <pre><code>lang.struct(field = value, ...) -&gt; type
 </code></pre>
-<p>Creates a new structure type type holding a set of <code>field</code>s. The given <code>value</code>s are used to infer the type of each field and as default values during construction. The return type can be used to instantiate objects of this type.</p>
-<p>Adding member functions to a type is done with the <code>let func in type = fn(args) {}</code> construct, with <code>func</code> being the function's name. Inside the function, variables and functions belonging to the type can be accessed using the <code>self</code> keyword.</p>
+<p>Creates a new structure type type holding a set of <code>field</code>s. The given <code>value</code>s are used to infer the type of each field and as default values during construction. The returned type can be used to instantiate objects of this type.</p>
+<p>Adding member functions to a type is done with the <code>let func in type = fn(args) {};</code> construct, with <code>func</code> being the function's name. Inside the function, variables and functions belonging to the type can be accessed using the <code>self</code> keyword.</p>
 <p>Example:</p>
 <pre><code>let player_t = lang.struct(name = &quot;John&quot;, class = &quot;Mage&quot;, health = 100, attack = 10);
 

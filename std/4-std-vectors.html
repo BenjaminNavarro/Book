@@ -333,7 +333,7 @@ io.println(v[3]);
 <h3><a class="header" href="#slice" id="slice">slice</a></h3>
 <pre><code>vector.slice(start: int, end: int = -1) -&gt; vector
 </code></pre>
-<p>Extracts the elements from <code>start</code> to <code>end - 1</code> and returns them in a new vector. If <code>end == -1</code> then the slice ends at the end of the vector</p>
+<p>Extracts the elements from <code>start</code> to <code>end - 1</code> and returns them in a new vector. If <code>end == -1</code> then the slice ends at the end of the vector. Any modification in the elements of a slice will affect its original vector as well</p>
 <p>Example:</p>
 <pre><code>let v = vec.new(0, 1, 2, 3);
 io.println(v.slice(1));

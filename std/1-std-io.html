@@ -187,7 +187,7 @@ io.print('I am ', 21, '.');
 <h3><a class="header" href="#println" id="println">println</a></h3>
 <pre><code>println(args...) -&gt; nil
 </code></pre>
-<p>Prints all given <code>args</code> to the standard output and add a new line after the last one</p>
+<p>Prints all given <code>args</code> to the standard output and adds a new line after the last one</p>
 <p>Example:</p>
 <pre><code>let name = 'John';
 let age = '21';
@@ -216,7 +216,7 @@ io.fprint(file, 'I am ', 21, '.');
 <h3><a class="header" href="#fprintln" id="fprintln">fprintln</a></h3>
 <pre><code>fprintln(file: file, args...) -&gt; nil
 </code></pre>
-<p>Writes all given <code>args</code> to <code>file</code> and add a new line after the last one</p>
+<p>Writes all given <code>args</code> to <code>file</code> and adds a new line after the last one</p>
 <p>Example:</p>
 <pre><code>let fs = import('std/fs');
 let file = fs.open('hello.txt', 'w')
@@ -260,7 +260,7 @@ io.cprint('{0}INFO: Operation successful.');      # Printed in default color
 <h3><a class="header" href="#cprintln" id="cprintln">cprintln</a></h3>
 <pre><code>cprintln(args...) -&gt; nil
 </code></pre>
-<p>Prints all given <code>args</code> to the standard output and add a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprintln</code> call and will remain active until another one comes in.</p>
+<p>Prints all given <code>args</code> to the standard output and adds a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprintln</code> call and will remain active until another one comes in.</p>
 <p>Example:</p>
 <pre><code>io.cprintln('{r}ERROR: Unexpected failure.');       # Printed in red
 io.cprintln('ERROR: Failed to connect to server.'); # Printed in red, on a new line
@@ -282,7 +282,7 @@ io.cprint('{0}INFO: Operation successful.');      # Printed in default color on 
 <h3><a class="header" href="#cdprintln" id="cdprintln">cdprintln</a></h3>
 <pre><code>cdprintln(args...) -&gt; nil
 </code></pre>
-<p>Prints all given <code>args</code> to the standard output and add a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprintln</code> call and will remain active until another one comes in.</p>
+<p>Prints all given <code>args</code> to the standard output and adds a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprintln</code> call and will remain active until another one comes in.</p>
 <p>Example:</p>
 <pre><code>io.cprintln('{r}ERROR: Unexpected failure.');       # Printed in red on `stderr`
 io.cprintln('ERROR: Failed to connect to server.'); # Printed in red, on a new line on `stderr`
@@ -306,7 +306,7 @@ You are 21 years old
 <h3><a class="header" href="#scaneof" id="scaneof">scaneof</a></h3>
 <pre><code>scaneof(prompt: string = '') -&gt; string
 </code></pre>
-<p>Reads text from the standard input until <em>EOF</em> is found. Even id <em>EOF</em> can be emitted by a user (usually <em>CTRL-D</em> on UNIX), <code>scaneof</code> is more likely to be useful when a <strong>Feral</strong> script takes as an input the output of another program.</p>
+<p>Reads text from the standard input until <em>EOF</em> is found. Even if <em>EOF</em> can be emitted by a user (usually <em>CTRL-D</em> on UNIX), <code>scaneof</code> is more likely to be useful when a <strong>Feral</strong> script takes as an input the output of another program.</p>
 <p>An optional <code>prompt</code> parameter can be passed to write the given string before reading the standard input.</p>
 <p>Example (<em>bio.fer</em>):</p>
 <pre><code>let input = io.scaneof();

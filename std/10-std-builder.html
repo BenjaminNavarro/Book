@@ -148,6 +148,139 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#builder" id="builder">Builder</a></h1>
+<p>The <strong>builder</strong> module defines a <code>builder</code> type that allows to build and install C++ modules to be used with Feral</p>
+<p>A guide on how to write and build modules for Feral can be read <a href="https://levelup.gitconnected.com/writing-c-modules-for-feral-391c30ac7739">here</a>.</p>
+<p>All the given examples assume that the <strong>builder</strong> module was imported using:</p>
+<pre><code>let builder = import('std/builder');
+let io = import('std/io');
+let sys = import('std/sys');
+</code></pre>
+<h2><a class="header" href="#functions" id="functions">Functions</a></h2>
+<ul>
+<li><a href="#new">new</a></li>
+</ul>
+<h2><a class="header" href="#builder-member-functions" id="builder-member-functions"><code>builder</code> Member Functions</a></h2>
+<ul>
+<li><a href="#make_dll">make_dll</a></li>
+<li><a href="#add_comp_opts">add_comp_opts</a></li>
+<li><a href="#add_inc">add_inc</a></li>
+<li><a href="#add_lib">add_lib</a></li>
+<li><a href="#add_src">add_src</a></li>
+<li><a href="#perform">perform</a></li>
+</ul>
+<h3><a class="header" href="#new" id="new">new</a></h3>
+<pre><code>builder.new() -&gt; builder
+</code></pre>
+<p>Creates a new builder with default build settings</p>
+<p>Example:</p>
+<pre><code>let build = builder.new();
+io.println(build);
+</code></pre>
+<p>Possible output:</p>
+<pre><code>typeid&lt;14&gt;{linker_flags:  , lib_flags:  -lferalvm -lgmpxx -lgmp -lmpfr , lib_dirs:  -L/usr/lib -L/usr/local/lib/feral , srcs:  , ccache: /usr/bin/ccache , compiler: g++, is_dll: false, compiler_opts:  -std=c++11 -O2 , inc_dirs:  -I/usr/include }
+</code></pre>
+<h3><a class="header" href="#make_dll" id="make_dll">make_dll</a></h3>
+<pre><code>builder.make_dll() -&gt; builder
+</code></pre>
+<p>Indicates that the module should be built as a dynamic library instead of an executable program</p>
+<p>Example:</p>
+<pre><code>let build = builder.new();
+io.println(&quot;Is DLL? &quot;, build.is_dll, &quot;. Compiler options: &quot;, build.compiler_opts);
+build.make_dll();
+io.println(&quot;Is DLL? &quot;, build.is_dll, &quot;. Compiler options: &quot;, build.compiler_opts);
+</code></pre>
+<p>Possible output:</p>
+<pre><code>Is DLL? false. Compiler options:  -std=c++11 -O2 
+Is DLL? true. Compiler options:  -std=c++11 -O2 -shared -fPIC -rdynamic -Wl,-rpath,/home/feral/.feral/lib
+</code></pre>
+<h3><a class="header" href="#add_comp_opts" id="add_comp_opts">add_comp_opts</a></h3>
+<pre><code>builder.add_comp_opts(opt: string) -&gt; builder
+</code></pre>
+<p>Adds <code>opt</code> to the list of options passed to the compiler</p>
+<p>Example:</p>
+<pre><code>let build = builder.new();
+io.println(&quot;Compiler options: &quot;, build.compiler_opts);
+build.add_comp_opts('-g');
+io.println(&quot;Compiler options: &quot;, build.compiler_opts);
+</code></pre>
+<p>Possible output:</p>
+<pre><code>Compiler options:  -std=c++11 -O2 
+Compiler options:  -std=c++11 -O2 -g
+</code></pre>
+<h3><a class="header" href="#add_inc" id="add_inc">add_inc</a></h3>
+<pre><code>builder.add_inc(inc_dir: string) -&gt; builder
+</code></pre>
+<p>Adds <code>inc_dir</code> to the list of include directories passed to the compiler</p>
+<p>Example:</p>
+<pre><code>let build = builder.new();
+io.println(&quot;Include directories: &quot;, build.inc_dirs);
+build.add_inc('-I/usr/local/include');
+io.println(&quot;Include directories: &quot;, build.inc_dirs);
+</code></pre>
+<p>Possible output:</p>
+<pre><code>Include directories:  -I/usr/include 
+Include directories:  -I/usr/include -I/usr/local/include 
+</code></pre>
+<h3><a class="header" href="#add_lib" id="add_lib">add_lib</a></h3>
+<pre><code>builder.add_lib(lib_flag : string, lib_dir = '' : string) -&gt; builder
+</code></pre>
+<p>Adds <code>lib_flag</code> and <code>lib_dir</code> to the list of libraries and library directories passed to the compiler</p>
+<p>Example:</p>
+<pre><code>let build = builder.new();
+io.println(&quot;Libraries and directories \n\t&quot;, build.lib_flags, &quot;\n\t&quot;, build.lib_dirs);                      
+build.add_lib('-lcurl', '-L/usr/local/lib');
+io.println(&quot;Libraries and directories \n\t&quot;, build.lib_flags, &quot;\n\t&quot;, build.lib_dirs);
+</code></pre>
+<p>Possible output:</p>
+<pre><code>Libraries and directories 
+	 -lferalvm -lgmpxx -lgmp -lmpfr 
+	 -L/usr/lib -L/usr/local/lib/feral 
+Libraries and directories 
+	 -lferalvm -lgmpxx -lgmp -lmpfr -lcurl 
+	 -L/usr/lib -L/usr/local/lib/feral -L/usr/local/lib
+</code></pre>
+<h3><a class="header" href="#add_src" id="add_src">add_src</a></h3>
+<pre><code>builder.add_src(src: string) -&gt; builder
+</code></pre>
+<p>Adds <code>src</code> to the list of source files passed to the compiler</p>
+<p>Example:</p>
+<pre><code>let build = builder.new();
+io.println(&quot;Source files: &quot;, build.srcs);
+build.add_src('src/hello.cpp');
+io.println(&quot;Source files: &quot;, build.srcs);
+</code></pre>
+<p>Possible output:</p>
+<pre><code>Source files:  
+Source files:  src/hello.cpp
+</code></pre>
+<h3><a class="header" href="#perform" id="perform">perform</a></h3>
+<pre><code>builder.perform(output_file: string, .kw_args) -&gt; builder
+</code></pre>
+<p>Builds the module and produces the <code>output_file</code> binary output. The possible keyword arguments are:</p>
+<ul>
+<li><code>src</code>: Additional source files to build. Default if empty</li>
+<li><code>inc</code>: Include files location. Default is <code>include</code></li>
+<li><code>lib</code>: Library files location. Default is <code>build</code></li>
+<li><code>bin</code>: Executable files location. Default is <code>bin</code></li>
+</ul>
+<p>The build is also influenced by the following command line arguments:</p>
+<ul>
+<li><code>dry</code> : Dry run</li>
+<li><code>install</code> : Install the module in addition of building it</li>
+</ul>
+<p>Example:</p>
+<pre><code>let build = builder.new().make_dll();
+build.add_src('src/learn.cpp');
+sys.exit(build.perform('learn'));
+</code></pre>
+<p>Possible output:</p>
+<pre><code>$ feral install
+Building ...
+=&gt; build/libferallearn.so
+Installing ...
+=&gt; build/* -&gt; /home/feral/.feral/lib/ ...
+Installation successful!
+</code></pre>
 
                     </main>
 

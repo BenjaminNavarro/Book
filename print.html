@@ -663,7 +663,7 @@ io.print('I am ', 21, '.');
 <h3><a class="header" href="#println" id="println">println</a></h3>
 <pre><code>println(args...) -&gt; nil
 </code></pre>
-<p>Prints all given <code>args</code> to the standard output and add a new line after the last one</p>
+<p>Prints all given <code>args</code> to the standard output and adds a new line after the last one</p>
 <p>Example:</p>
 <pre><code>let name = 'John';
 let age = '21';
@@ -692,7 +692,7 @@ io.fprint(file, 'I am ', 21, '.');
 <h3><a class="header" href="#fprintln" id="fprintln">fprintln</a></h3>
 <pre><code>fprintln(file: file, args...) -&gt; nil
 </code></pre>
-<p>Writes all given <code>args</code> to <code>file</code> and add a new line after the last one</p>
+<p>Writes all given <code>args</code> to <code>file</code> and adds a new line after the last one</p>
 <p>Example:</p>
 <pre><code>let fs = import('std/fs');
 let file = fs.open('hello.txt', 'w')
@@ -736,7 +736,7 @@ io.cprint('{0}INFO: Operation successful.');      # Printed in default color
 <h3><a class="header" href="#cprintln" id="cprintln">cprintln</a></h3>
 <pre><code>cprintln(args...) -&gt; nil
 </code></pre>
-<p>Prints all given <code>args</code> to the standard output and add a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprintln</code> call and will remain active until another one comes in.</p>
+<p>Prints all given <code>args</code> to the standard output and adds a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprintln</code> call and will remain active until another one comes in.</p>
 <p>Example:</p>
 <pre><code>io.cprintln('{r}ERROR: Unexpected failure.');       # Printed in red
 io.cprintln('ERROR: Failed to connect to server.'); # Printed in red, on a new line
@@ -758,7 +758,7 @@ io.cprint('{0}INFO: Operation successful.');      # Printed in default color on 
 <h3><a class="header" href="#cdprintln" id="cdprintln">cdprintln</a></h3>
 <pre><code>cdprintln(args...) -&gt; nil
 </code></pre>
-<p>Prints all given <code>args</code> to the standard output and add a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprintln</code> call and will remain active until another one comes in.</p>
+<p>Prints all given <code>args</code> to the standard output and adds a new line after the last one and interpret color codes to change the text color. A color change is not bound to a single <code>cprintln</code> call and will remain active until another one comes in.</p>
 <p>Example:</p>
 <pre><code>io.cprintln('{r}ERROR: Unexpected failure.');       # Printed in red on `stderr`
 io.cprintln('ERROR: Failed to connect to server.'); # Printed in red, on a new line on `stderr`
@@ -782,7 +782,7 @@ You are 21 years old
 <h3><a class="header" href="#scaneof" id="scaneof">scaneof</a></h3>
 <pre><code>scaneof(prompt: string = '') -&gt; string
 </code></pre>
-<p>Reads text from the standard input until <em>EOF</em> is found. Even id <em>EOF</em> can be emitted by a user (usually <em>CTRL-D</em> on UNIX), <code>scaneof</code> is more likely to be useful when a <strong>Feral</strong> script takes as an input the output of another program.</p>
+<p>Reads text from the standard input until <em>EOF</em> is found. Even if <em>EOF</em> can be emitted by a user (usually <em>CTRL-D</em> on UNIX), <code>scaneof</code> is more likely to be useful when a <strong>Feral</strong> script takes as an input the output of another program.</p>
 <p>An optional <code>prompt</code> parameter can be passed to write the given string before reading the standard input.</p>
 <p>Example (<em>bio.fer</em>):</p>
 <pre><code>let input = io.scaneof();
@@ -840,7 +840,7 @@ io.fprintln(io.stderr, 'We have a problem');
 </code></pre>
 <h1><a class="header" href="#lang" id="lang">Lang</a></h1>
 <p>The <strong>lang</strong> module offers a way to create user-defined structures and enumerations.</p>
-<p>A structure can pack together variables and functions, which allow object-oriented programming.</p>
+<p>A structure can pack together variables and functions, which allows object-oriented programming.</p>
 <p>An enumeration is a set of names bounds to constant numerical values.</p>
 <p>All the given examples assume the following imports:</p>
 <pre><code>let lang = import('std/lang');
@@ -854,8 +854,8 @@ let io = import('std/io');
 <h3><a class="header" href="#struct" id="struct">Struct</a></h3>
 <pre><code>lang.struct(field = value, ...) -&gt; type
 </code></pre>
-<p>Creates a new structure type type holding a set of <code>field</code>s. The given <code>value</code>s are used to infer the type of each field and as default values during construction. The return type can be used to instantiate objects of this type.</p>
-<p>Adding member functions to a type is done with the <code>let func in type = fn(args) {}</code> construct, with <code>func</code> being the function's name. Inside the function, variables and functions belonging to the type can be accessed using the <code>self</code> keyword.</p>
+<p>Creates a new structure type type holding a set of <code>field</code>s. The given <code>value</code>s are used to infer the type of each field and as default values during construction. The returned type can be used to instantiate objects of this type.</p>
+<p>Adding member functions to a type is done with the <code>let func in type = fn(args) {};</code> construct, with <code>func</code> being the function's name. Inside the function, variables and functions belonging to the type can be accessed using the <code>self</code> keyword.</p>
 <p>Example:</p>
 <pre><code>let player_t = lang.struct(name = &quot;John&quot;, class = &quot;Mage&quot;, health = 100, attack = 10);
 
@@ -913,7 +913,7 @@ name: Josh, class: -1, health: 100, attack: 10
 <h1><a class="header" href="#strings-1" id="strings-1">Strings</a></h1>
 <p>The <strong>str</strong> module defines member functions for the native <code>string</code> type and other string manipulation related functions.
 The functions available natively in the language can be consulted <a href="std//13-core-functions.html#string">here</a>.</p>
-<p>A <code>string</code> is a sequence of characters. There is no character type in <strong>Feral</strong> and so are represented are one character strings.</p>
+<p>A <code>string</code> is a sequence of characters. There is no character type in <strong>Feral</strong> and so are represented as one character strings.</p>
 <p>All the given examples assume the following imports:</p>
 <pre><code>import('std/str');
 let io = import('std/io');
@@ -1282,7 +1282,7 @@ io.println(v[3]);
 <h3><a class="header" href="#slice" id="slice">slice</a></h3>
 <pre><code>vector.slice(start: int, end: int = -1) -&gt; vector
 </code></pre>
-<p>Extracts the elements from <code>start</code> to <code>end - 1</code> and returns them in a new vector. If <code>end == -1</code> then the slice ends at the end of the vector</p>
+<p>Extracts the elements from <code>start</code> to <code>end - 1</code> and returns them in a new vector. If <code>end == -1</code> then the slice ends at the end of the vector. Any modification in the elements of a slice will affect its original vector as well</p>
 <p>Example:</p>
 <pre><code>let v = vec.new(0, 1, 2, 3);
 io.println(v.slice(1));
@@ -1326,7 +1326,7 @@ for i in range(v.len() + 1) {
 (nil)
 </code></pre>
 <h1><a class="header" href="#maps" id="maps">Maps</a></h1>
-<p>The <strong>map</strong> module defines the <code>map</code> type and all the vector manipulation related functions.</p>
+<p>The <strong>map</strong> module defines the <code>map</code> type and all the map manipulation related functions.</p>
 <p>A <code>map</code> is an associative container that can store heterogeneous types.</p>
 <p>All the given examples assume the following imports:</p>
 <pre><code>let map = import('std/map');
@@ -1358,7 +1358,7 @@ io.println(m);
 <p>Gives the output:</p>
 <pre><code>{Answer?: 42, 0: Zero, 1: One}
 </code></pre>
-<p>Note that the elements are not stored in the order they are given. They are lexicographically sorted</p>
+<p>Note that the elements are not stored in any particular order and thus does not necessarily follow the given one</p>
 <h3><a class="header" href="#len-2" id="len-2">len</a></h3>
 <pre><code>map.len() -&gt; int
 </code></pre>
@@ -1971,6 +1971,139 @@ $ feral args.fer hello world
 <pre><code>/usr/local/lib/feral
 </code></pre>
 <h1><a class="header" href="#builder" id="builder">Builder</a></h1>
+<p>The <strong>builder</strong> module defines a <code>builder</code> type that allows to build and install C++ modules to be used with Feral</p>
+<p>A guide on how to write and build modules for Feral can be read <a href="https://levelup.gitconnected.com/writing-c-modules-for-feral-391c30ac7739">here</a>.</p>
+<p>All the given examples assume that the <strong>builder</strong> module was imported using:</p>
+<pre><code>let builder = import('std/builder');
+let io = import('std/io');
+let sys = import('std/sys');
+</code></pre>
+<h2><a class="header" href="#functions-9" id="functions-9">Functions</a></h2>
+<ul>
+<li><a href="std/10-std-builder.html#new">new</a></li>
+</ul>
+<h2><a class="header" href="#builder-member-functions" id="builder-member-functions"><code>builder</code> Member Functions</a></h2>
+<ul>
+<li><a href="std/10-std-builder.html#make_dll">make_dll</a></li>
+<li><a href="std/10-std-builder.html#add_comp_opts">add_comp_opts</a></li>
+<li><a href="std/10-std-builder.html#add_inc">add_inc</a></li>
+<li><a href="std/10-std-builder.html#add_lib">add_lib</a></li>
+<li><a href="std/10-std-builder.html#add_src">add_src</a></li>
+<li><a href="std/10-std-builder.html#perform">perform</a></li>
+</ul>
+<h3><a class="header" href="#new-3" id="new-3">new</a></h3>
+<pre><code>builder.new() -&gt; builder
+</code></pre>
+<p>Creates a new builder with default build settings</p>
+<p>Example:</p>
+<pre><code>let build = builder.new();
+io.println(build);
+</code></pre>
+<p>Possible output:</p>
+<pre><code>typeid&lt;14&gt;{linker_flags:  , lib_flags:  -lferalvm -lgmpxx -lgmp -lmpfr , lib_dirs:  -L/usr/lib -L/usr/local/lib/feral , srcs:  , ccache: /usr/bin/ccache , compiler: g++, is_dll: false, compiler_opts:  -std=c++11 -O2 , inc_dirs:  -I/usr/include }
+</code></pre>
+<h3><a class="header" href="#make_dll" id="make_dll">make_dll</a></h3>
+<pre><code>builder.make_dll() -&gt; builder
+</code></pre>
+<p>Indicates that the module should be built as a dynamic library instead of an executable program</p>
+<p>Example:</p>
+<pre><code>let build = builder.new();
+io.println(&quot;Is DLL? &quot;, build.is_dll, &quot;. Compiler options: &quot;, build.compiler_opts);
+build.make_dll();
+io.println(&quot;Is DLL? &quot;, build.is_dll, &quot;. Compiler options: &quot;, build.compiler_opts);
+</code></pre>
+<p>Possible output:</p>
+<pre><code>Is DLL? false. Compiler options:  -std=c++11 -O2 
+Is DLL? true. Compiler options:  -std=c++11 -O2 -shared -fPIC -rdynamic -Wl,-rpath,/home/feral/.feral/lib
+</code></pre>
+<h3><a class="header" href="#add_comp_opts" id="add_comp_opts">add_comp_opts</a></h3>
+<pre><code>builder.add_comp_opts(opt: string) -&gt; builder
+</code></pre>
+<p>Adds <code>opt</code> to the list of options passed to the compiler</p>
+<p>Example:</p>
+<pre><code>let build = builder.new();
+io.println(&quot;Compiler options: &quot;, build.compiler_opts);
+build.add_comp_opts('-g');
+io.println(&quot;Compiler options: &quot;, build.compiler_opts);
+</code></pre>
+<p>Possible output:</p>
+<pre><code>Compiler options:  -std=c++11 -O2 
+Compiler options:  -std=c++11 -O2 -g
+</code></pre>
+<h3><a class="header" href="#add_inc" id="add_inc">add_inc</a></h3>
+<pre><code>builder.add_inc(inc_dir: string) -&gt; builder
+</code></pre>
+<p>Adds <code>inc_dir</code> to the list of include directories passed to the compiler</p>
+<p>Example:</p>
+<pre><code>let build = builder.new();
+io.println(&quot;Include directories: &quot;, build.inc_dirs);
+build.add_inc('-I/usr/local/include');
+io.println(&quot;Include directories: &quot;, build.inc_dirs);
+</code></pre>
+<p>Possible output:</p>
+<pre><code>Include directories:  -I/usr/include 
+Include directories:  -I/usr/include -I/usr/local/include 
+</code></pre>
+<h3><a class="header" href="#add_lib" id="add_lib">add_lib</a></h3>
+<pre><code>builder.add_lib(lib_flag : string, lib_dir = '' : string) -&gt; builder
+</code></pre>
+<p>Adds <code>lib_flag</code> and <code>lib_dir</code> to the list of libraries and library directories passed to the compiler</p>
+<p>Example:</p>
+<pre><code>let build = builder.new();
+io.println(&quot;Libraries and directories \n\t&quot;, build.lib_flags, &quot;\n\t&quot;, build.lib_dirs);                      
+build.add_lib('-lcurl', '-L/usr/local/lib');
+io.println(&quot;Libraries and directories \n\t&quot;, build.lib_flags, &quot;\n\t&quot;, build.lib_dirs);
+</code></pre>
+<p>Possible output:</p>
+<pre><code>Libraries and directories 
+	 -lferalvm -lgmpxx -lgmp -lmpfr 
+	 -L/usr/lib -L/usr/local/lib/feral 
+Libraries and directories 
+	 -lferalvm -lgmpxx -lgmp -lmpfr -lcurl 
+	 -L/usr/lib -L/usr/local/lib/feral -L/usr/local/lib
+</code></pre>
+<h3><a class="header" href="#add_src" id="add_src">add_src</a></h3>
+<pre><code>builder.add_src(src: string) -&gt; builder
+</code></pre>
+<p>Adds <code>src</code> to the list of source files passed to the compiler</p>
+<p>Example:</p>
+<pre><code>let build = builder.new();
+io.println(&quot;Source files: &quot;, build.srcs);
+build.add_src('src/hello.cpp');
+io.println(&quot;Source files: &quot;, build.srcs);
+</code></pre>
+<p>Possible output:</p>
+<pre><code>Source files:  
+Source files:  src/hello.cpp
+</code></pre>
+<h3><a class="header" href="#perform" id="perform">perform</a></h3>
+<pre><code>builder.perform(output_file: string, .kw_args) -&gt; builder
+</code></pre>
+<p>Builds the module and produces the <code>output_file</code> binary output. The possible keyword arguments are:</p>
+<ul>
+<li><code>src</code>: Additional source files to build. Default if empty</li>
+<li><code>inc</code>: Include files location. Default is <code>include</code></li>
+<li><code>lib</code>: Library files location. Default is <code>build</code></li>
+<li><code>bin</code>: Executable files location. Default is <code>bin</code></li>
+</ul>
+<p>The build is also influenced by the following command line arguments:</p>
+<ul>
+<li><code>dry</code> : Dry run</li>
+<li><code>install</code> : Install the module in addition of building it</li>
+</ul>
+<p>Example:</p>
+<pre><code>let build = builder.new().make_dll();
+build.add_src('src/learn.cpp');
+sys.exit(build.perform('learn'));
+</code></pre>
+<p>Possible output:</p>
+<pre><code>$ feral install
+Building ...
+=&gt; build/libferallearn.so
+Installing ...
+=&gt; build/* -&gt; /home/feral/.feral/lib/ ...
+Installation successful!
+</code></pre>
 <h1><a class="header" href="#core-functions" id="core-functions">Core Functions</a></h1>
 <ul>
 <li><a href="13-core-functions.html#global">Global</a></li>
@@ -2083,7 +2216,7 @@ io.println(hello.at(0));
 io.println(hello[5]);
 </code></pre>
 <p>Output:</p>
-<pre><code>h
+<pre><code>!
 (nil)
 </code></pre>
 
