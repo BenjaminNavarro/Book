@@ -1358,7 +1358,7 @@ io.println(m);
 <p>Gives the output:</p>
 <pre><code>{Answer?: 42, 0: Zero, 1: One}
 </code></pre>
-<p>Note that the elements are not stored in any particular order and thus does not necessarily follow the given one</p>
+<p>Note that the elements are not stored in any particular order and thus do not necessarily follow the given one</p>
 <h3><a class="header" href="#len-2" id="len-2">len</a></h3>
 <pre><code>map.len() -&gt; int
 </code></pre>
@@ -1971,8 +1971,8 @@ $ feral args.fer hello world
 <pre><code>/usr/local/lib/feral
 </code></pre>
 <h1><a class="header" href="#builder" id="builder">Builder</a></h1>
-<p>The <strong>builder</strong> module defines a <code>builder</code> type that allows to build and install C++ modules to be used with Feral</p>
-<p>A guide on how to write and build modules for Feral can be read <a href="https://levelup.gitconnected.com/writing-c-modules-for-feral-391c30ac7739">here</a>.</p>
+<p>The <strong>builder</strong> module defines a <code>builder_t</code> type that allows to build and install external modules to be used with Feral</p>
+<p>A guide on how to write and build modules for Feral can be read <a href="https://medium.com/p/writing-c-modules-for-feral-391c30ac7739?source=email-852839018f8a--writer.postDistributed&amp;sk=b2de39e5f849e75e3b4ea9bdeeb1b4db">here</a>.</p>
 <p>All the given examples assume that the <strong>builder</strong> module was imported using:</p>
 <pre><code>let builder = import('std/builder');
 let io = import('std/io');
@@ -1982,7 +1982,7 @@ let sys = import('std/sys');
 <ul>
 <li><a href="std/10-std-builder.html#new">new</a></li>
 </ul>
-<h2><a class="header" href="#builder-member-functions" id="builder-member-functions"><code>builder</code> Member Functions</a></h2>
+<h2><a class="header" href="#builder_t-member-functions" id="builder_t-member-functions"><code>builder_t</code> Member Functions</a></h2>
 <ul>
 <li><a href="std/10-std-builder.html#make_dll">make_dll</a></li>
 <li><a href="std/10-std-builder.html#add_comp_opts">add_comp_opts</a></li>
@@ -1992,7 +1992,7 @@ let sys = import('std/sys');
 <li><a href="std/10-std-builder.html#perform">perform</a></li>
 </ul>
 <h3><a class="header" href="#new-3" id="new-3">new</a></h3>
-<pre><code>builder.new() -&gt; builder
+<pre><code>builder.new() -&gt; builder_t_t
 </code></pre>
 <p>Creates a new builder with default build settings</p>
 <p>Example:</p>
@@ -2000,10 +2000,10 @@ let sys = import('std/sys');
 io.println(build);
 </code></pre>
 <p>Possible output:</p>
-<pre><code>typeid&lt;14&gt;{linker_flags:  , lib_flags:  -lferalvm -lgmpxx -lgmp -lmpfr , lib_dirs:  -L/usr/lib -L/usr/local/lib/feral , srcs:  , ccache: /usr/bin/ccache , compiler: g++, is_dll: false, compiler_opts:  -std=c++11 -O2 , inc_dirs:  -I/usr/include }
+<pre><code>builder_t{linker_flags:  , lib_flags:  -lferalvm -lgmpxx -lgmp -lmpfr , lib_dirs:  -L/usr/lib -L/usr/local/lib/feral , srcs:  , ccache: /usr/bin/ccache , compiler: g++, is_dll: false, compiler_opts:  -std=c++11 -O2 , inc_dirs:  -I/usr/include }
 </code></pre>
 <h3><a class="header" href="#make_dll" id="make_dll">make_dll</a></h3>
-<pre><code>builder.make_dll() -&gt; builder
+<pre><code>builder.make_dll() -&gt; builder_t
 </code></pre>
 <p>Indicates that the module should be built as a dynamic library instead of an executable program</p>
 <p>Example:</p>
@@ -2017,7 +2017,7 @@ io.println(&quot;Is DLL? &quot;, build.is_dll, &quot;. Compiler options: &quot;,
 Is DLL? true. Compiler options:  -std=c++11 -O2 -shared -fPIC -rdynamic -Wl,-rpath,/home/feral/.feral/lib
 </code></pre>
 <h3><a class="header" href="#add_comp_opts" id="add_comp_opts">add_comp_opts</a></h3>
-<pre><code>builder.add_comp_opts(opt: string) -&gt; builder
+<pre><code>builder.add_comp_opts(opt: string) -&gt; builder_t
 </code></pre>
 <p>Adds <code>opt</code> to the list of options passed to the compiler</p>
 <p>Example:</p>
@@ -2031,7 +2031,7 @@ io.println(&quot;Compiler options: &quot;, build.compiler_opts);
 Compiler options:  -std=c++11 -O2 -g
 </code></pre>
 <h3><a class="header" href="#add_inc" id="add_inc">add_inc</a></h3>
-<pre><code>builder.add_inc(inc_dir: string) -&gt; builder
+<pre><code>builder.add_inc(inc_dir: string) -&gt; builder_t
 </code></pre>
 <p>Adds <code>inc_dir</code> to the list of include directories passed to the compiler</p>
 <p>Example:</p>
@@ -2045,7 +2045,7 @@ io.println(&quot;Include directories: &quot;, build.inc_dirs);
 Include directories:  -I/usr/include -I/usr/local/include 
 </code></pre>
 <h3><a class="header" href="#add_lib" id="add_lib">add_lib</a></h3>
-<pre><code>builder.add_lib(lib_flag : string, lib_dir = '' : string) -&gt; builder
+<pre><code>builder.add_lib(lib_flag : string, lib_dir = '' : string) -&gt; builder_t
 </code></pre>
 <p>Adds <code>lib_flag</code> and <code>lib_dir</code> to the list of libraries and library directories passed to the compiler</p>
 <p>Example:</p>
@@ -2063,7 +2063,7 @@ Libraries and directories
 	 -L/usr/lib -L/usr/local/lib/feral -L/usr/local/lib
 </code></pre>
 <h3><a class="header" href="#add_src" id="add_src">add_src</a></h3>
-<pre><code>builder.add_src(src: string) -&gt; builder
+<pre><code>builder.add_src(src: string) -&gt; builder_t
 </code></pre>
 <p>Adds <code>src</code> to the list of source files passed to the compiler</p>
 <p>Example:</p>
@@ -2077,9 +2077,9 @@ io.println(&quot;Source files: &quot;, build.srcs);
 Source files:  src/hello.cpp
 </code></pre>
 <h3><a class="header" href="#perform" id="perform">perform</a></h3>
-<pre><code>builder.perform(output_file: string, .kw_args) -&gt; builder
+<pre><code>builder.perform(output_file: string, .kw_args) -&gt; int
 </code></pre>
-<p>Builds the module and produces the <code>output_file</code> binary output. The possible keyword arguments are:</p>
+<p>Builds the module and produces the <code>output_file</code> binary output and returns zero on success or an error code on failure. The possible keyword arguments are:</p>
 <ul>
 <li><code>src</code>: Additional source files to build. Default if empty</li>
 <li><code>inc</code>: Include files location. Default is <code>include</code></li>
@@ -2213,10 +2213,10 @@ Installation successful!
 <pre><code>let io = import('std/io');
 let hello = 'hello!';
 io.println(hello.at(0));
-io.println(hello[5]);
+io.println(hello[6]);
 </code></pre>
 <p>Output:</p>
-<pre><code>!
+<pre><code>h
 (nil)
 </code></pre>
 
